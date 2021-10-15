@@ -1,21 +1,27 @@
-import React, { useReducer, useEffect } from "react";
-import { Card, Typography, TextField, CardContent, Button, Paper } from "@material-ui/core";
-import { Container } from "@material-ui/core";
+import React from "react";
+import { MuiThemeProvider } from "@material-ui/core/styles";
+import { Toolbar, Card, AppBar, CardHeader, CardContent, Typography, Button } from "@material-ui/core";
+import theme from "../theme";
+import logo from "./campIQLogo.jpg";
+import Image from "react-image-resizer";
 
-function TripPlannerComponent() {
+const TripPlannerComponent = () => {
   return (
-    <Container>
-      <Paper>
-        <Typography>Plan your trip</Typography>
-        <Button variant="contained" color="primary">
-          Camping List
-        </Button>
-        <Button variant="contained" color="primary">
-          Book a Site
-        </Button>
-      </Paper>
-    </Container>
-  );
-}
+    <MuiThemeProvider theme={theme}>
+      <Card style={{ marginTop: "20%" }}>
+        <CardHeader title="Plan Your Upcoming Trip" style={{ textAlign: "center" }} />
+        <CardContent>
+          <p></p>
+          <Button variant="contained" color="secondary" align="left">
+            What to Bring
+          </Button>
 
+          <Button variant="contained" color="secondary" style={{ marginLeft: "25%" }}>
+            Book A Site
+          </Button>
+        </CardContent>
+      </Card>
+    </MuiThemeProvider>
+  );
+};
 export default TripPlannerComponent;
