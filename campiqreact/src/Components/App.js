@@ -6,6 +6,7 @@ import { MuiThemeProvider } from "@material-ui/core/styles";
 import { Toolbar, Card, AppBar, CardHeader, CardContent, Typography, Button } from "@material-ui/core";
 import theme from "../theme";
 import logo from "./campIQLogo.jpg";
+import PackList from "./packlist";
 
 class App extends Component {
   render() {
@@ -40,6 +41,7 @@ class App extends Component {
               <Switch>
                 <Route exact path="/" component={Home} />
                 <Route exact path="/tripplanner" component={TripPlannerComponent} />
+                <Route exact path="/packlist" component={PackList} />
               </Switch>
             </div>
           </Card>

@@ -4,6 +4,7 @@ import { Toolbar, Card, AppBar, CardHeader, CardContent, Typography, Button } fr
 import theme from "../theme";
 import logo from "./campIQLogo.jpg";
 import Image from "react-image-resizer";
+import { Link } from "react-router-dom";
 
 const TripPlannerComponent = () => {
   return (
@@ -12,9 +13,11 @@ const TripPlannerComponent = () => {
         <CardHeader title="Plan Your Upcoming Trip" style={{ textAlign: "center" }} />
         <CardContent>
           <p></p>
-          <Button variant="contained" color="secondary" align="left">
-            What to Bring
-          </Button>
+          <Link to="/packlist">
+            <Button variant="contained" color="secondary" align="left">
+              What to Bring
+            </Button>
+          </Link>
 
           <Button variant="contained" color="secondary" style={{ marginLeft: "25%" }}>
             Book A Site
