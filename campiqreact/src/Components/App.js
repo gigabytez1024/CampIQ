@@ -3,6 +3,7 @@ import { BrowserRouter as Router, Switch, Route, Link } from "react-router-dom";
 import Home from "./home";
 import TripPlannerComponent from "./tripplanner";
 import Location from "./location";
+import AddReview from "./addreview";
 import { MuiThemeProvider } from "@material-ui/core/styles";
 import { Toolbar, Card, AppBar, CardHeader, CardContent, Typography, Button } from "@material-ui/core";
 import theme from "../theme";
@@ -49,6 +50,7 @@ class App extends Component {
                 <Route exact path="/tripplanner" component={TripPlannerComponent} />
                 <Route exact path="/packlist" component={PackList} />
                 <Route exact path="/location" component={Location} />
+                <Route exact path="/addreview" component={AddReview} />
               </Switch>
             </div>
           </Card>
