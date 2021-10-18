@@ -8,7 +8,7 @@ import {
     TextField,
 } from '@material-ui/core';
 import Autocomplete from "@material-ui/lab/Autocomplete";
-import theme from './theme';
+import theme from '../pages/theme';
 
 const Location = (props) => {
     const initialState = {
