@@ -6,21 +6,9 @@ import TripPlannerComponent from "./tripplanner";
 import Location from "./location";
 import AddReview from "./addreview";
 import { MuiThemeProvider } from "@material-ui/core/styles";
-import {
-  Toolbar,
-  Card,
-  AppBar,
-  CardHeader,
-  CardContent,
-  Typography,
-  Button,
-  Menu,
-  MenuItem,
-  IconButton,
-} from "@material-ui/core";
+import { Toolbar, AppBar, Typography, Menu, MenuItem, IconButton } from "@material-ui/core";
 import theme from "../theme";
 import logo from "./campIQLogo.jpg";
-import PackList from "./packlist";
 
 const App = () => {
   const [item, setItem] = useState({ msg: null, anchorEl: null });
@@ -38,7 +26,7 @@ const App = () => {
       <AppBar position="static">
         <Toolbar>
           <Typography variant="h6" color="inherit">
-            <div class="center-image">
+            <div className="center-image">
               <img src={logo} />
             </div>
           </Typography>
@@ -60,7 +48,7 @@ const App = () => {
       </AppBar>
       <div>
         <Route exact path="/" render={() => <Redirect to="/home" />} />
-        <Route path="/packinglist" render={() => <TripPlannerComponent />} />
+        <Route path="/tripplanner" render={() => <TripPlannerComponent />} />
         <Route path="/addreview" render={() => <AddReview />} />
         <Route path="/location" render={() => <Location />} />
         <Route path="/home" component={Home} />
