@@ -5,4 +5,5 @@ module.exports = {
   appdb: process.env.DB,
   campgrounds: process.env.CAMPGROUNDSCOLLECTION,
   port: process.env.PORT,
+  graphql: process.env.GRAPHQLURL,
 };
