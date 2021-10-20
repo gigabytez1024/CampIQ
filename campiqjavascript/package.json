@@ -10,7 +10,10 @@
   "license": "ISC",
   "dependencies": {
     "express": "^4.17.1",
-    "mongodb": "^4.1.2"
+    "got": "^11.8.2",
+    "mongodb": "^4.1.2",
+    "cors": "^2.8.5",
+    "dotenv": "^8.2.0"
   },
   "devDependencies": {
     "nodemon": "^2.0.13"
