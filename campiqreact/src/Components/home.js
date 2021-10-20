@@ -1,7 +1,8 @@
 import React from "react";
 import { MuiThemeProvider } from "@material-ui/core/styles";
-import { Toolbar, Card, AppBar, CardHeader, Typography } from "@material-ui/core";
+import { Card, CardHeader, Typography } from "@material-ui/core";
 import theme from "../theme";
+import home from "./homepage.PNG";
 
 const Home = () => {
   return (

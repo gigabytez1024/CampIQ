@@ -5,6 +5,7 @@ import Home from "./home";
 import TripPlannerComponent from "./tripplanner";
 import Location from "./location";
 import AddReview from "./addreview";
+import PackListComponent from "./packlist";
 import { MuiThemeProvider } from "@material-ui/core/styles";
 import { Toolbar, AppBar, Typography, Menu, MenuItem, IconButton } from "@material-ui/core";
 import theme from "../theme";
@@ -51,6 +52,7 @@ const App = () => {
         <Route path="/tripplanner" render={() => <TripPlannerComponent />} />
         <Route path="/addreview" render={() => <AddReview />} />
         <Route path="/location" render={() => <Location />} />
+        <Route path="/packlist" render={() => <PackListComponent />} />
         <Route path="/home" component={Home} />
       </div>
     </MuiThemeProvider>

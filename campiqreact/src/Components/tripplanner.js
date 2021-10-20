@@ -1,9 +1,9 @@
 import React from "react";
 import { MuiThemeProvider } from "@material-ui/core/styles";
-import { Toolbar, Card, AppBar, CardHeader, CardContent, Typography, Button } from "@material-ui/core";
+import { Card, CardHeader, CardContent, Button } from "@material-ui/core";
 import theme from "../theme";
 import { Link, Route } from "react-router-dom";
-import PackList from "./packlist";
+import PackListComponent from "./packlist";
 
 const TripPlannerComponent = () => {
   return (
@@ -20,9 +20,6 @@ const TripPlannerComponent = () => {
           </Button>
         </CardContent>
       </Card>
-      <div>
-        <Route path="/packlist" render={() => <PackList />} />
-      </div>
     </MuiThemeProvider>
   );
 };

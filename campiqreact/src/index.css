@@ -16,3 +16,16 @@ code {
   height: 200px;
   width: 200px;
 }
+.small-image {
+  height: 20%;
+  width: 20%;
+}
+body {
+  padding: 50px;
+  background-color: #66ccff;
+  font-family: sans-serif;
+}
+#container {
+  display: flex;
+  justify-content: center;
+}
