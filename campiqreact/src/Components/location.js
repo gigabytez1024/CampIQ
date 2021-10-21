@@ -50,7 +50,7 @@ const Location = (props) => {
                             <TextField
                                 {...params}
                                 label="pick a campsite"
-                                variant="outlined"
+                                variant="filled"
                                 fullWidth
                             />
                         )}
