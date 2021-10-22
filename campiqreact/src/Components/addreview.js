@@ -1,4 +1,4 @@
-import React, { useReducer, useEffect } from "react";
+import React, { useState } from "react";
 import { MuiThemeProvider } from '@material-ui/core/styles';
 import {
     Button,
@@ -8,24 +8,32 @@ import {
 } from '@material-ui/core';
 import Autocomplete from "@material-ui/lab/Autocomplete";
 import theme from '../theme';
-import { useLocation } from "react-router-dom";
+import Location from "./location";
 
-const Review = (props) => {
-    let campsite = "UNKNOWN";
-    console.log(props);
-    if (props.location.state.campsite) {
-        campsite = props.location.state.campsite;
+const AddReview = () => {
+    let [campsite, setCampsite] = useState("");
+    let [campsiteChosen, setCampsiteChosen] = useState(false);
+
+    const chosenSite = (campsite) => {
+        setCampsite(campsite);
+        setCampsiteChosen(true);
     }
+
 
     return (
         <MuiThemeProvider theme={theme}>
-            <Card>
-                <CardHeader title={<p>Submit a review for: <b>{campsite}</b></p>} style={{ textAlign: "center" }} />
-                <div style={{ margin: 20 }}>
-                    <textarea style={{ width: '100%', height: '12vh' }}></textarea>
-                </div>
-            </Card>
+            <Location campsite={chosenSite} />
+            {
+                campsiteChosen && (
+                    <Card>
+                        <CardHeader title={<p>Submit a review for: <b>{campsite}</b></p>} style={{ textAlign: "center" }} />
+                        <div style={{ margin: 20 }}>
+                            <textarea style={{ width: '100%', height: '12vh' }}></textarea>
+                        </div>
+                    </Card>
+                )
+            }
         </MuiThemeProvider >
     );
 };
-export default Review;
+export default AddReview;

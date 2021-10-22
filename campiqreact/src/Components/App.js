@@ -50,12 +50,11 @@ const App = () => {
       <div>
         <Route exact path="/" render={() => <Redirect to="/home" />} />
         <Route path="/tripplanner" render={() => <TripPlannerComponent />} />
-        <Route path="/addreview" render={() => <AddReview />} />
-        <Route path="/location" render={() => <Location />} />
+        <Route exact path="/addreview" render={() => <AddReview />} />
         <Route path="/packlist" render={() => <PackListComponent />} />
         <Route path="/home" component={Home} />
       </div>
-    </MuiThemeProvider>
+    </MuiThemeProvider >
   );
 };
 

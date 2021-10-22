@@ -8,7 +8,6 @@ import {
 } from '@material-ui/core';
 import Autocomplete from "@material-ui/lab/Autocomplete";
 import theme from '../theme';
-import { Link } from "react-router-dom";
 
 const Location = (props) => {
     const initialState = {
@@ -31,6 +30,10 @@ const Location = (props) => {
             })
         console.log(state.campsite);
     };
+
+    const chooseCampsite = () => {
+        props.campsite(state.campsite);
+    }
 
     const notChosen =
         state.campsite === undefined ||
@@ -55,13 +58,12 @@ const Location = (props) => {
                             />
                         )}
                     />
-                    <Link to={{ pathname: "/addreview", state: { campsite: state.campsite, title: "title" } }}>
-                        <Button varient="contained" color="secondary" style={{ marginTop: 20, alignContent: "center" }}
-                            disabled={notChosen}
-                            fontSize="large">Add Review
-                        </Button>
-                    </Link>
-
+                    <Button varient="contained" color="secondary" style={{ marginTop: 20, alignContent: "center" }}
+                        disabled={notChosen}
+                        fontSize="large"
+                        onClick={chooseCampsite}
+                    >Add Review
+                    </Button>
                 </div>
             </Card>
         </MuiThemeProvider >
