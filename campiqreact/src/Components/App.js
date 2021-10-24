@@ -10,6 +10,7 @@ import { MuiThemeProvider } from "@material-ui/core/styles";
 import { Toolbar, AppBar, Typography, Menu, MenuItem, IconButton } from "@material-ui/core";
 import theme from "../theme";
 import logo from "./campIQLogo.jpg";
+import AccountBenefits from "./accountbenefits";
 
 const App = () => {
   const [item, setItem] = useState({ msg: null, anchorEl: null });
@@ -38,6 +39,9 @@ const App = () => {
             <MenuItem component={Link} to="/home" onClick={handleClose}>
               Home
             </MenuItem>
+            <MenuItem component={Link} to="/accountbenefits" onClick={handleClose}>
+              Account Benefits
+            </MenuItem>
             <MenuItem component={Link} to="/tripplanner" onClick={handleClose}>
               Trip Planner
             </MenuItem>
@@ -49,6 +53,7 @@ const App = () => {
       </AppBar>
       <div>
         <Route exact path="/" render={() => <Redirect to="/home" />} />
+        <Route exact path="/accountbenefits" render={() => <AccountBenefits />} />
         <Route path="/tripplanner" render={() => <TripPlannerComponent />} />
         <Route exact path="/addreview" render={() => <AddReview />} />
         <Route path="/packlist" render={() => <PackListComponent />} />
