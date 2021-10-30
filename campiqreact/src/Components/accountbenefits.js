@@ -106,4 +106,5 @@ const AccountBenefits = () => {
         </MuiThemeProvider>
     );
 };
+
 export default AccountBenefits;
