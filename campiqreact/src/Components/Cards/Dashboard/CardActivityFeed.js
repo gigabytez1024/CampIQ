@@ -132,10 +132,9 @@ export default function CardActivityFeed() {
             fontSize="1rem"
             marginTop="0"
           >
-            Personal profiles are the perfect way for you to grab their
-            attention and persuade recruiters to continue reading your CV
-            because you’re telling them from the off exactly why they should
-            hire you.
+            Get familiar with Parks Canada’s camping offer and increase your
+            odds of getting that dream campsite this summer! These new camping
+            and reservation tips are sure to help.
           </Box>
           <Box
             component="img"
