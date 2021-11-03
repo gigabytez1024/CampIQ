@@ -1,0 +1,21 @@
+[debug] [2021-10-30T19:56:09.498Z] ----------------------------------------------------------------------
+[debug] [2021-10-30T19:56:09.500Z] Command:       C:\Program Files\nodejs\node.exe C:\Users\Lisa\AppData\Roaming\npm\node_modules\firebase-tools\lib\bin\firebase.js init
+[debug] [2021-10-30T19:56:09.500Z] CLI Version:   9.21.0
+[debug] [2021-10-30T19:56:09.500Z] Platform:      win32
+[debug] [2021-10-30T19:56:09.500Z] Node Version:  v14.15.4
+[debug] [2021-10-30T19:56:09.501Z] Time:          Sat Oct 30 2021 15:56:09 GMT-0400 (Eastern Daylight Time)
+[debug] [2021-10-30T19:56:09.501Z] ----------------------------------------------------------------------
+[debug] 
+[debug] [2021-10-30T19:56:09.508Z] > command requires scopes: ["email","openid","https://www.googleapis.com/auth/cloudplatformprojects.readonly","https://www.googleapis.com/auth/firebase","https://www.googleapis.com/auth/cloud-platform"]
+[debug] [2021-10-30T19:56:09.508Z] > authorizing via signed-in user (fivestarzproject@gmail.com)
+[info] 
+     ######## #### ########  ######## ########     ###     ######  ########
+     ##        ##  ##     ## ##       ##     ##  ##   ##  ##       ##
+     ######    ##  ########  ######   ########  #########  ######  ######
+     ##        ##  ##    ##  ##       ##     ## ##     ##       ## ##
+     ##       #### ##     ## ######## ########  ##     ##  ######  ########
+
+You're about to initialize a Firebase project in this directory:
+
+  C:\Users\Lisa\Documents\CampIQ\CampIQ\campiqreact
+

@@ -21,6 +21,7 @@ import {
     DialogActions
 } from "@material-ui/core";
 import theme from "../theme";
+import { registerWithEmailAndPassword, signInWithGoogle } from "../firebase";
 
 const CreateAccount = () => {
 
@@ -43,6 +44,10 @@ const CreateAccount = () => {
 
     const handleChange = (prop) => (event) => {
         setState({ ...state, [prop]: event.target.value });
+      };
+
+      const register = () => {
+        registerWithEmailAndPassword(state.lastName, state.email, state.password);
       };
 
     // Disable CREATE ACCOUNT button until all input fields are populated
@@ -146,7 +151,11 @@ const CreateAccount = () => {
                     helperText="Password"
                 />
                 <div style={{ textAlign: "center" }}>
-                    <Button variant="contained" color="secondary" disabled={emptyorundefined}>
+                    <Button 
+                        variant="contained" 
+                        color="secondary" 
+                        disabled={emptyorundefined}
+                        onClick={register}>
                         Create Account
                     </Button>
                 </div>

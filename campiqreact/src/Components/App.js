@@ -8,6 +8,7 @@ import AddReview from "./addreview";
 import PackListComponent from "./packlist";
 import AccountBenefits from "./accountbenefits";
 import CreateAccount from "./createaccount";
+import Login from "./login";
 import { MuiThemeProvider } from "@material-ui/core/styles";
 import { Toolbar, AppBar, Typography, Menu, MenuItem, IconButton } from "@material-ui/core";
 import theme from "../theme";
@@ -40,6 +41,9 @@ const App = () => {
             <MenuItem component={Link} to="/home" onClick={handleClose}>
               Home
             </MenuItem>
+            <MenuItem component={Link} to="/login" onClick={handleClose}>
+              Login
+            </MenuItem>
             <MenuItem component={Link} to="/accountbenefits" onClick={handleClose}>
               Account Benefits
             </MenuItem>
@@ -56,6 +60,7 @@ const App = () => {
         <Route exact path="/" render={() => <Redirect to="/home" />} />
         <Route path="/accountbenefits" render={() => <AccountBenefits />} />
         <Route path="/createaccount" render={() => <CreateAccount />} />
+        <Route path="/login" render={() => <Login />} />
         <Route path="/tripplanner" render={() => <TripPlannerComponent />} />
         <Route exact path="/addreview" render={() => <AddReview />} />
         <Route path="/packlist" render={() => <PackListComponent />} />
