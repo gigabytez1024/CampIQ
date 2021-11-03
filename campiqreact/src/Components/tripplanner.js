@@ -1,10 +1,9 @@
 import React from "react";
 import { MuiThemeProvider } from "@material-ui/core/styles";
-import { Toolbar, Card, AppBar, CardHeader, CardContent, Typography, Button } from "@material-ui/core";
+import { Card, CardHeader, CardContent, Button } from "@material-ui/core";
 import theme from "../theme";
-import logo from "./campIQLogo.jpg";
-import Image from "react-image-resizer";
-import { Link } from "react-router-dom";
+import { Link, Route } from "react-router-dom";
+import PackListComponent from "./packlist";
 
 const TripPlannerComponent = () => {
   return (
@@ -13,12 +12,9 @@ const TripPlannerComponent = () => {
         <CardHeader title="Plan Your Upcoming Trip" style={{ textAlign: "center" }} />
         <CardContent>
           <p></p>
-          <Link to="/packlist">
-            <Button variant="contained" color="secondary" align="left">
-              What to Bring
-            </Button>
-          </Link>
-
+          <Button variant="contained" color="secondary" align="left" component={Link} to="/packlist">
+            What to Bring
+          </Button>
           <Button variant="contained" color="secondary" style={{ marginLeft: "25%" }}>
             Book A Site
           </Button>

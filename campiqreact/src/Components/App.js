@@ -1,63 +1,68 @@
-import React, { Component } from "react";
-import { BrowserRouter as Router, Switch, Route, Link } from "react-router-dom";
+import React, { useState } from "react";
+import { Route, Link, Redirect } from "react-router-dom";
+import Reorder from "@material-ui/icons/Reorder";
 import Home from "./home";
 import TripPlannerComponent from "./tripplanner";
 import Location from "./location";
 import AddReview from "./addreview";
+import PackListComponent from "./packlist";
+import AccountBenefits from "./accountbenefits";
+import CreateAccount from "./createaccount";
 import { MuiThemeProvider } from "@material-ui/core/styles";
-import { Toolbar, Card, AppBar, CardHeader, CardContent, Typography, Button } from "@material-ui/core";
+import { Toolbar, AppBar, Typography, Menu, MenuItem, IconButton } from "@material-ui/core";
 import theme from "../theme";
 import logo from "./campIQLogo.jpg";
-import PackList from "./packlist";
 
-class App extends Component {
-  render() {
-    return (
-      <MuiThemeProvider theme={theme}>
-        <AppBar color="primary" variant="dense">
-          <Typography variant="h6" color="black">
-            <div class="center-image">
+const App = () => {
+  const [item, setItem] = useState({ msg: null, anchorEl: null });
+
+  const [anchorEl, setAnchorEl] = useState(null);
+  const handleClose = () => {
+    setAnchorEl(null);
+  };
+  const handleClick = (event) => {
+    setAnchorEl(event.currentTarget);
+  };
+
+  return (
+    <MuiThemeProvider theme={theme}>
+      <AppBar position="static">
+        <Toolbar>
+          <Typography variant="h6" color="inherit">
+            <div className="center-image">
               <img src={logo} />
             </div>
           </Typography>
-        </AppBar>
-        <Router>
-          <Card style={{ marginTop: "50%" }}>
-            <div>
-              <nav className="navbar navbar-expand-lg navbar-light bg-light">
-                <ul className="navbar-nav mr-auto">
-                  <li>
-                    <Link to={"/"} className="nav-link">
-                      {" "}
-                      Home{" "}
-                    </Link>
-                  </li>
-                  <li>
-                    <Link to={"/tripplanner"} className="nav-link">
-                      Trip Planner
-                    </Link>
-                  </li>
-                  <li>
-                    <Link to={"/location"} className="nav-link">
-                      Locations
-                    </Link>
-                  </li>
-                </ul>
-              </nav>
-              <hr />
-              <Switch>
-                <Route exact path="/" component={Home} />
-                <Route exact path="/tripplanner" component={TripPlannerComponent} />
-                <Route exact path="/packlist" component={PackList} />
-                <Route exact path="/location" component={Location} />
-                <Route exact path="/addreview" component={AddReview} />
-              </Switch>
-            </div>
-          </Card>
-        </Router>
-      </MuiThemeProvider>
-    );
-  }
-}
+          <IconButton onClick={handleClick} color="inherit" style={{ marginLeft: "auto", paddingRight: "1vh" }}>
+            <Reorder />
+          </IconButton>
+          <Menu id="simple-menu" anchorEl={anchorEl} open={Boolean(anchorEl)} onClose={handleClose}>
+            <MenuItem component={Link} to="/home" onClick={handleClose}>
+              Home
+            </MenuItem>
+            <MenuItem component={Link} to="/accountbenefits" onClick={handleClose}>
+              Account Benefits
+            </MenuItem>
+            <MenuItem component={Link} to="/tripplanner" onClick={handleClose}>
+              Trip Planner
+            </MenuItem>
+            <MenuItem component={Link} to="/addreview" onClick={handleClose}>
+              Add a Review
+            </MenuItem>
+          </Menu>
+        </Toolbar>
+      </AppBar>
+      <div>
+        <Route exact path="/" render={() => <Redirect to="/home" />} />
+        <Route path="/accountbenefits" render={() => <AccountBenefits />} />
+        <Route path="/createaccount" render={() => <CreateAccount />} />
+        <Route path="/tripplanner" render={() => <TripPlannerComponent />} />
+        <Route exact path="/addreview" render={() => <AddReview />} />
+        <Route path="/packlist" render={() => <PackListComponent />} />
+        <Route path="/home" component={Home} />
+      </div>
+    </MuiThemeProvider >
+  );
+};
 
 export default App;

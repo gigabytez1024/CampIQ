@@ -4,7 +4,7 @@ import AddIcon from "@material-ui/icons/Add";
 import DeleteIcon from "@material-ui/icons/Delete";
 import "./packlist.css";
 
-const PackList = () => {
+const PackListComponent = () => {
   const [item, setItem] = useState("");
   const [newItem, setNewItem] = useState([]);
 
@@ -29,7 +29,7 @@ const PackList = () => {
       <br />
       <br />
       <div className="childOne">
-        <input type="text" value={item} placeholder="Create your list" onChange={firstEvent} />
+        <input type="text" value={item} placeholder="Add an item" onChange={firstEvent} />
         <Button className="AddBtn" onClick={secondEvent}>
           <AddIcon />
         </Button>
@@ -53,4 +53,4 @@ const PackList = () => {
   );
 };
 
-export default PackList;
+export default PackListComponent;
