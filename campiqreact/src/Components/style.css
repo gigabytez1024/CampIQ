@@ -1,0 +1,63 @@
+.childOne {
+  width: 75%;
+  height: 65vh;
+  background-color: #f4f4f4;
+  box-shadow: 5px 5px 25px -5px rgba(0, 0, 0, 0.5);
+  border-radius: 15px;
+  margin: auto;
+}
+
+input {
+  padding: 25px;
+  text-align: left;
+  height: 30px;
+  border: none;
+  background: transparent;
+  font-size: 20px;
+  font-weight: 500;
+  width: 65%;
+  border-bottom: 2px solid #8566aa;
+  outline: none;
+  margin-right: 20px;
+}
+
+.AddBtn {
+  width: 40px;
+  height: 45px;
+  background-color: #093323 !important;
+  color: white !important;
+  box-shadow: 5px 5px 15px -5px rgba(0, 0, 0, 0.3);
+  border-radius: 50% !important;
+}
+
+.textFont {
+  font-family: verdana;
+  font-size: 20px;
+  font-weight: 500;
+}
+
+.childTwo {
+  width: 35%;
+  height: 7vh;
+  background-color: #f4f4f4;
+  box-shadow: 5px 5px 25px -5px rgba(0, 0, 0, 0.5);
+  border-radius: 15px;
+  margin: auto;
+}
+
+.delBtn {
+  width: 100%;
+  height: 7vh;
+  background-color: #f4f4f4;
+  box-shadow: 5px 5px 25px -5px rgba(0, 0, 0, 0.5);
+  border-radius: 15px;
+  margin: auto;
+}
+/* latin */
+@font-face {
+  font-family: 'Spicy Rice';
+  font-style: normal;
+  font-weight: 400;
+  src: url(https://fonts.gstatic.com/s/spicyrice/v11/uK_24rSEd-Uqwk4jY1RyKvi8Ww.woff2) format('woff2');
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+2000-206F, U+2074, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}
