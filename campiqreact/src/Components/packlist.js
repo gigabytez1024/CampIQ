@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import Button from "@material-ui/core/Button";
 import AddIcon from "@material-ui/icons/Add";
 import DeleteIcon from "@material-ui/icons/Delete";
-import "./packlist.css";
+import "./style.css";
 
 const PackListComponent = () => {
   const [item, setItem] = useState("");

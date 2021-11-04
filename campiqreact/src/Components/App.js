@@ -21,6 +21,7 @@ import {
 import theme from "../theme";
 import logo from "./campIQLogo.jpg";
 import FindCampground from "./findcampground";
+import Memories from "./memories";
 
 const App = () => {
   const [item, setItem] = useState({ msg: null, anchorEl: null });
@@ -77,6 +78,9 @@ const App = () => {
             >
               Find Campground
             </MenuItem>
+            <MenuItem component={Link} to="/memories" onClick={handleClose}>
+              Memories
+            </MenuItem>
           </Menu>
         </Toolbar>
       </AppBar>
@@ -89,6 +93,7 @@ const App = () => {
         <Route exact path="/addreview" render={() => <AddReview />} />
         <Route path="/packlist" render={() => <PackListComponent />} />
         <Route path="/findcampground" render={() => <FindCampground />} />
+        <Route path="/memories" render={() => <Memories/>}/>
         <Route path="/home" component={Home} />
       </div>
     </MuiThemeProvider>
