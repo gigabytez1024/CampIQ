@@ -18,10 +18,21 @@ import {
   MenuItem,
   IconButton,
 } from "@material-ui/core";
-import theme from "../theme";
+import theme from "assets/theme/theme.js";
 import logo from "./campIQLogo.jpg";
 import FindCampground from "./findcampground";
 import Memories from "./memories";
+
+// plugins styles from node_modules
+import "react-perfect-scrollbar/dist/css/styles.css";
+import "@fullcalendar/common/main.min.css";
+import "@fullcalendar/daygrid/main.min.css";
+import "quill/dist/quill.core.css";
+import "@fortawesome/fontawesome-free/css/all.min.css";
+// plugins styles downloaded
+import "assets/plugins/nucleo/css/nucleo.css";
+// core styles
+import "assets/scss/argon-dashboard-pro-material-ui.scss?v1.0.0";
 
 const App = () => {
   const [item, setItem] = useState({ msg: null, anchorEl: null });
@@ -59,10 +70,11 @@ const App = () => {
             <MenuItem component={Link} to="/home" onClick={handleClose}>
               Home
             </MenuItem>
-            <MenuItem component={Link} to="/login" onClick={handleClose}>
-              Login
-            </MenuItem>
-            <MenuItem component={Link} to="/accountbenefits" onClick={handleClose}>
+            <MenuItem
+              component={Link}
+              to="/accountbenefits"
+              onClick={handleClose}
+            >
               Account Benefits
             </MenuItem>
             <MenuItem component={Link} to="/tripplanner" onClick={handleClose}>
@@ -86,9 +98,11 @@ const App = () => {
       </AppBar>
       <div>
         <Route exact path="/" render={() => <Redirect to="/home" />} />
-        <Route path="/accountbenefits" render={() => <AccountBenefits />} />
-        <Route path="/createaccount" render={() => <CreateAccount />} />
-        <Route path="/login" render={() => <Login />} />
+        <Route
+          exact
+          path="/accountbenefits"
+          render={() => <AccountBenefits />}
+        />
         <Route path="/tripplanner" render={() => <TripPlannerComponent />} />
         <Route exact path="/addreview" render={() => <AddReview />} />
         <Route path="/packlist" render={() => <PackListComponent />} />
