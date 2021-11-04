@@ -10,9 +10,17 @@ import AccountBenefits from "./accountbenefits";
 import CreateAccount from "./createaccount";
 import Login from "./login";
 import { MuiThemeProvider } from "@material-ui/core/styles";
-import { Toolbar, AppBar, Typography, Menu, MenuItem, IconButton } from "@material-ui/core";
+import {
+  Toolbar,
+  AppBar,
+  Typography,
+  Menu,
+  MenuItem,
+  IconButton,
+} from "@material-ui/core";
 import theme from "../theme";
 import logo from "./campIQLogo.jpg";
+import FindCampground from "./findcampground";
 
 const App = () => {
   const [item, setItem] = useState({ msg: null, anchorEl: null });
@@ -34,10 +42,19 @@ const App = () => {
               <img src={logo} />
             </div>
           </Typography>
-          <IconButton onClick={handleClick} color="inherit" style={{ marginLeft: "auto", paddingRight: "1vh" }}>
+          <IconButton
+            onClick={handleClick}
+            color="inherit"
+            style={{ marginLeft: "auto", paddingRight: "1vh" }}
+          >
             <Reorder />
           </IconButton>
-          <Menu id="simple-menu" anchorEl={anchorEl} open={Boolean(anchorEl)} onClose={handleClose}>
+          <Menu
+            id="simple-menu"
+            anchorEl={anchorEl}
+            open={Boolean(anchorEl)}
+            onClose={handleClose}
+          >
             <MenuItem component={Link} to="/home" onClick={handleClose}>
               Home
             </MenuItem>
@@ -53,6 +70,13 @@ const App = () => {
             <MenuItem component={Link} to="/addreview" onClick={handleClose}>
               Add a Review
             </MenuItem>
+            <MenuItem
+              component={Link}
+              to="/findcampground"
+              onClick={handleClose}
+            >
+              Find Campground
+            </MenuItem>
           </Menu>
         </Toolbar>
       </AppBar>
@@ -64,9 +88,10 @@ const App = () => {
         <Route path="/tripplanner" render={() => <TripPlannerComponent />} />
         <Route exact path="/addreview" render={() => <AddReview />} />
         <Route path="/packlist" render={() => <PackListComponent />} />
+        <Route path="/findcampground" render={() => <FindCampground />} />
         <Route path="/home" component={Home} />
       </div>
-    </MuiThemeProvider >
+    </MuiThemeProvider>
   );
 };
 
