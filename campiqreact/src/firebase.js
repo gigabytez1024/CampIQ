@@ -41,6 +41,8 @@ const signInWithGoogle = async () => {
     }
 };
 
+
+
 const signInWithEmailAndPassword = async (email, password) => {
     try {
         await auth.signInWithEmailAndPassword(email, password);
