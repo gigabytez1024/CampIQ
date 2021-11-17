@@ -28,8 +28,8 @@ const PackListComponent = () => {
   };
 
   const saveEvent = () => {
-db.collection('users').doc('packlist').set({packlist: newItem}, {merge: true})
-
+db.collection('users').doc('packlist').set({packlist: newItem}, {merge: false})
+setNewItem([]);
   }
 
   return (
