@@ -2,7 +2,7 @@ import React from 'react';
 import 'react-dropzone-uploader/dist/styles.css'
 import Dropzone from 'react-dropzone-uploader'
 import { getDroppedOrSelectedFiles } from 'html5-file-selector';
-import { Button, Card, CardHeader, Typography} from '@material-ui/core';
+import { Button, Card, CardHeader} from '@material-ui/core';
 import { Link } from "react-router-dom";
 import "./style.css";
 
