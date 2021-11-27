@@ -12,6 +12,8 @@ import theme from "assets/theme/theme.js";
 import { makeStyles } from "@material-ui/core/styles";
 import CardActivityFeed from "./Cards/Dashboard/CardActivityFeed";
 import CardLightTableSortable from "./Cards/Sortable/CardLightTableSortable";
+import AlternativeHeader from "./Headers/AlternativeHeader";
+import AuthFooter from "./Footers/AuthFooter";
 import componentStyles from "assets/theme/views/admin/dashboard.js";
 import componentStylesCardDeck from "assets/theme/components/cards/card-deck";
 const useStyles = makeStyles(componentStyles);
@@ -24,10 +26,7 @@ const Home = () => {
         <p style={{ textAlign: "center" }}>
           {/* <img src="globe.png" style={{ width: 300, marginBottom: 0 }} /> */}
         </p>
-        <CardHeader
-          title="CampIQ"
-          style={{ color: theme.palette.secondary.main, textAlign: "center" }}
-        />
+        <AlternativeHeader />
         <Container
           maxWidth={false}
           component={Box}
@@ -50,6 +49,7 @@ const Home = () => {
         >
           &copy;5Starz
         </Typography>
+        <AuthFooter />
       </Card>
     </MuiThemeProvider>
   );
