@@ -1,20 +1,93 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { MuiThemeProvider } from '@material-ui/core/styles';
 import {
     Card,
     CardHeader,
+    Button
 } from '@material-ui/core';
 import theme from '../theme';
 import Location from "./location";
 import ReactStars from "react-rating-stars-component";
+import { render } from "react-dom";
 
 const AddReview = () => {
     let [campsite, setCampsite] = useState("");
     let [campsiteChosen, setCampsiteChosen] = useState(false);
+    let [reviewSet, setReviewSet] = useState(false);
+    let [newRating, setNewRating] = useState(0);
 
-    const chosenSite = (campsite) => {
+    useEffect(() => {
+        setCampsite("");
+        setCampsiteChosen(false);
+        setReviewSet(false);
+    }, []);
+
+    const GRAPHURL = "http://localhost:5000/graphql";
+    const chosenSite = async (campsite) => {
         setCampsite(campsite);
         setCampsiteChosen(true);
+        setReviewSet(false);
+        try {
+            let response = await fetch(GRAPHURL, {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json",
+                    Accept: "application/json",
+                },
+                body: JSON.stringify({
+                    query: `query {campgroundbyname(campsitename:"${campsite}") {googlerating, userrating} }`,
+                }),
+            });
+            let json = await response.json();
+            render(
+                <ReactStars
+                    size={40}
+                    value={json.data.campgroundbyname.googlerating}
+                    edit={false}
+                    activeColor="#ffd700"
+                />,
+                document.getElementById("googlerating")
+            );
+            render(
+                <ReactStars
+                    size={40}
+                    value={json.data.campgroundbyname.userrating}
+                    edit={false}
+                    activeColor="#ffd700"
+                />,
+                document.getElementById("userrating")
+            );
+        } catch (error) {
+            console.log(error);
+        }
+    }
+
+    const ratingChanged = (newRating) => {
+        setNewRating(newRating);
+    };
+
+    const submitReview = async () => {
+        try {
+            let response = await fetch(GRAPHURL, {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json",
+                    Accept: "application/json",
+                },
+                body: JSON.stringify({
+                    query: `mutation{updateRating(campsitename:"${campsite}", rating: ${newRating}) {campsitename} }`,
+                }),
+            });
+            let json = await response.json();
+            console.log(json);
+            if (json.data.updateRating.campsitename != "") {
+                setReviewSet(true);
+                setCampsite("");
+                setCampsiteChosen(false);
+            }
+        } catch (error) {
+            console.log(error);
+        }
     }
 
 
@@ -29,49 +102,47 @@ const AddReview = () => {
                 campsiteChosen && (
                     <Card>
                         <CardHeader title={<h1>{campsite}</h1>} style={{ textAlign: "center" }} />
-                        {/* image? */}
                         <div style={{ margin: 20 }}>
                             <div class="row" style={{ marginLeft: 20 }}>
                                 <div style={{ marginRight: 54, marginTop: 20 }}>
                                     <h4>App Score: </h4>
                                 </div>
-                                <ReactStars
-                                    size={40}
-                                    isHalf={true}
-                                    value={3}   //will query from database
-                                    edit={false}
-                                    activeColor="#ffd700"
-                                />
+                                <div id="googlerating" />
                             </div>
                             <div class="row" style={{ marginLeft: 20 }}>
                                 <div style={{ marginRight: 40, marginTop: 20 }}>
                                     <h4>Users Score: </h4>
                                 </div>
+                                <div id="userrating" />
+                            </div>
+                            <br />
+                            <div class="row" style={{ marginLeft: 20 }}>
+                                <div style={{ marginRight: 8, marginTop: 20 }}>
+                                    <h4>Submit a Review: </h4>
+                                </div>
                                 <ReactStars
                                     size={40}
+                                    onChange={ratingChanged}
                                     isHalf={true}
-                                    value={2.5} //will query from database
                                     a11y={true}
-                                    edit={false}
                                     activeColor="#ffd700"
                                 />
                             </div>
 
-                            <div style={{ margin: 20, marginBottom: 0 }}>
-                                <h2>Submit a review</h2>
-                                <div class="row" style={{ marginLeft: 0 }}>
-                                    <p>Attribute: </p>
-                                    <ReactStars
-                                        size={20}
-                                        isHalf={true}
-                                        a11y={true}
-                                        activeColor="#ffd700"
-                                    />
-                                </div>
-                                <textarea style={{ width: '100%', height: '10vh' }}></textarea>
+                            <div style={{ textAlign: "center", marginTop: 0 }}>
+                                <Button style={{ alignContent: "center" }}
+                                    onClick={submitReview}
+                                    fontSize="large">
+                                    Submit
+                                </Button>
                             </div>
                         </div>
                     </Card>
+                )
+            }
+            {
+                reviewSet && (
+                    <h4>Review Submitted!</h4>
                 )
             }
         </MuiThemeProvider >

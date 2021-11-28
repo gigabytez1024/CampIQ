@@ -1,8 +1,8 @@
 import React, { useReducer, useEffect, useState } from "react";
 import PropTypes from "prop-types";
 import { withStyles } from "@material-ui/styles";
-import {TableCell, TableBody, TableContainer, TableHead, TablePagination, TableRow, TableSortLabel, Toolbar, Typography, Paper, FormControlLabel, Box, Table} from '@material-ui/core';
-import {Switch} from "@material-ui/core";
+import { TableCell, TableBody, TableContainer, TableHead, TablePagination, TableRow, TableSortLabel, Toolbar, Typography, Paper, FormControlLabel, Box, Table } from '@material-ui/core';
+import { Switch } from "@material-ui/core";
 import { visuallyHidden } from "@mui/utils";
 
 function descendingComparator(a, b, orderBy) {
