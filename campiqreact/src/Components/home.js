@@ -14,6 +14,7 @@ import CardActivityFeed from "./Cards/Dashboard/CardActivityFeed";
 import CardLightTableSortable from "./Cards/Sortable/CardLightTableSortable";
 import AlternativeHeader from "./Headers/AlternativeHeader";
 import AuthFooter from "./Footers/AuthFooter";
+import CardCalendar from "./Cards/Dashboard/CardCalendar";
 import componentStyles from "assets/theme/views/admin/dashboard.js";
 import componentStylesCardDeck from "assets/theme/components/cards/card-deck";
 const useStyles = makeStyles(componentStyles);
@@ -39,6 +40,7 @@ const Home = () => {
             </Grid>
             <Grid item xs={12} xl={6}>
               <CardLightTableSortable />
+              <CardCalendar />
             </Grid>
           </Grid>
           <Grid container></Grid>
