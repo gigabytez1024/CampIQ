@@ -21,7 +21,7 @@ const themeColors = {
     900: "#212529",
   },
   primary: {
-    main: "#5e72e4",
+    main: "#0e5e72",
     dark: "#233dd2",
     snackbar: "#7889e8",
     badgeBg: "#eaecfb",
@@ -30,7 +30,7 @@ const themeColors = {
     inputCredit: "#324cdd",
   },
   secondary: {
-    main: "#f7fafc",
+    main: "#d3634b",
     snackbar: "#f8fbfc",
     badgeBgHover: "#cadeeb",
     btnOutline: "#4385b1",
