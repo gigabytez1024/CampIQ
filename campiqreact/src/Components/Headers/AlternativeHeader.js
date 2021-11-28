@@ -32,8 +32,8 @@ const Header = ({ section, subsection }) => {
             container
             component={Box}
             alignItems="center"
-            paddingTop="1.5rem"
-            paddingBottom="1.5rem"
+            paddingTop="0rem"
+            paddingBottom="0rem"
           >
             <Grid item xs={7} lg={6}>
               <Typography
