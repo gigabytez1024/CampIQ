@@ -24,10 +24,6 @@
     "cors": "^2.8.5",
     "dropzone": "5.7.6",
     "firebase": "^9.2.0",
-<<<<<<< HEAD
-    "firebase-admin": "^10.0.0",
-=======
->>>>>>> a5630adf4284e504f1747640ee614210510010e2
     "html5-file-selector": "^2.1.0",
     "jss-rtl": "0.3.0",
     "list.js": "2.3.1",
