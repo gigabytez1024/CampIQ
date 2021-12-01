@@ -3,8 +3,8 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
-    "@emotion/react": "11.1.5",
-    "@emotion/styled": "11.1.5",
+    "@emotion/react": "^11.1.5",
+    "@emotion/styled": "^11.1.5",
     "@fortawesome/fontawesome-free": "5.15.2",
     "@fullcalendar/core": "5.5.1",
     "@fullcalendar/daygrid": "5.5.0",
@@ -14,6 +14,7 @@
     "@material-ui/icons": "^4.11.2",
     "@material-ui/lab": "^4.0.0-alpha.60",
     "@material-ui/styles": "^4.11.4",
+    "@mui/material": "^5.0.6",
     "@testing-library/jest-dom": "^5.14.1",
     "@testing-library/react": "^11.2.7",
     "@testing-library/user-event": "^12.8.3",
@@ -23,7 +24,10 @@
     "cors": "^2.8.5",
     "dropzone": "5.7.6",
     "firebase": "^9.2.0",
+<<<<<<< HEAD
     "firebase-admin": "^10.0.0",
+=======
+>>>>>>> a5630adf4284e504f1747640ee614210510010e2
     "html5-file-selector": "^2.1.0",
     "jss-rtl": "0.3.0",
     "list.js": "2.3.1",

@@ -19,7 +19,11 @@ type Campground {
  firewood: String
  dumpstation: String
  additionalvehicle: String
- googlerating: String
+ googlerating: Float
+ userrating: Float
+}
+type Mutation {
+    updateRating(campsitename: String, newRating: Float): Campground
 }
 `);
 module.exports = { schema };

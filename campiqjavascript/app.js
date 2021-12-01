@@ -1,5 +1,5 @@
 const { port, graphql } = require("./config");
-const express = require("express");
+const express = require('express');
 const { graphqlHTTP } = require("express-graphql");
 const app = express();
 const { resolvers } = require("./resolvers");
