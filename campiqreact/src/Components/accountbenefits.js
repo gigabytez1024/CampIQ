@@ -96,11 +96,14 @@ const AccountBenefits = () => {
                         />
                     </ListItem>
                 </List>
-                <div style={{ textAlign: "center" }}>
+                <div style={{ textAlign: "center"}}>
                     <Button variant="contained" color="secondary" component={Link} to="/createaccount">
                         Create Account
                     </Button>
                 </div>
+                <Typography variant="subtitle2" align="center" style={{ paddingTop: "1vh"}}>
+                    Already have an account? <Link style={{color: "#5a5149", fontWeight: "bold", textDecoration: "underline" }} to="/login">Login</Link> now.
+                </Typography>
             </CardContent>
         </Card>
         </MuiThemeProvider>

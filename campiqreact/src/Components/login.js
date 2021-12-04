@@ -1,54 +1,86 @@
 import React, { useEffect, useState } from "react";
 import { Link, useHistory } from "react-router-dom";
-import { auth, signInWithEmailAndPassword, signInWithGoogle } from "../firebase";
+import { MuiThemeProvider } from "@material-ui/core/styles";
+import {
+    Card,
+    CardHeader,
+    CardContent,
+    Typography,
+    TextField,
+    Button
+} from "@material-ui/core";
+import theme from "../theme";
+import { auth, signInWithEmailAndPassword } from "../firebase";
 import { useAuthState } from "react-firebase-hooks/auth";
 
 function Login() {
+
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
-    const [user, loading, error] = useAuthState(auth);
+    const [user, loading] = useAuthState(auth);
     const history = useHistory();
+
     useEffect(() => {
         if (loading) {
         // maybe trigger a loading screen
         return;
         }
-        if (user) history.replace("/dashboard");
+        if (user) history.replace("/home");
     }, [user, loading]);
+
+    // Disable LOGIN button until all input fields are populated
+    const emptyorundefined =
+        email === undefined ||
+        email === "" ||
+        password === undefined ||
+        password === "";
+
     return (
-        <div className="login">
-            <div className="login__container">
-                <input
-                    type="text"
-                    className="login__textBox"
+        <MuiThemeProvider theme={theme}>
+        <Card>
+            <CardHeader title="Account Login" style={{ textAlign: "center", paddingBottom: 0 }} />
+            <CardContent style={{ textAlign: "center", paddingTop: 10}}>
+                <TextField
+                    autoFocus
+                    variant="outlined"
+                    size="small"
+                    label="Email Address"
                     value={email}
                     onChange={(e) => setEmail(e.target.value)}
-                    placeholder="E-mail Address"
+                    error={email === ""}
+                    helperText={email === "" ? "Email Address is required" : ""}
                 />
-                <input
-                    type="password"
-                    className="login__textBox"
+                <br/><br/>
+                <TextField
+                    variant="outlined"
+                    size="small"
+                    label="Password"
                     value={password}
                     onChange={(e) => setPassword(e.target.value)}
-                    placeholder="Password"
+                    error={password === ""}
+                    helperText={password === "" ? "Password is required" : ""}
                 />
-                <button
-                    className="login__btn"
-                    onClick={() => signInWithEmailAndPassword(email, password)}
-                >
-                    Login
-                </button>
-                <button className="login__btn login__google" onClick={signInWithGoogle}>
-                    Login with Google
-                </button>
-                <div>
-                    <Link to="/reset">Forgot Password</Link>
+                <div style={{ textAlign: "center", paddingTop: "2vh" }}>
+                    <Button 
+                        variant="contained" 
+                        color="secondary" 
+                        disabled={emptyorundefined}
+                        onClick={() => signInWithEmailAndPassword(email, password)}
+                    >
+                            Login
+                    </Button>
                 </div>
-                <div>
-                    Don't have an account? <Link to="/createaccount">Register</Link> now.
-                </div>
-            </div>
-        </div>
+                <Typography variant="subtitle2" align="center" style={{ paddingTop: "1vh"}}>
+                    <Link style={{color: "#5a5149", fontWeight: "bold", textDecoration: "underline" }} 
+                        to="/reset">Forgot Password</Link>
+                </Typography>
+                <Typography variant="subtitle2" align="center" style={{ paddingTop: "1vh"}}>
+                    Don't have an account? <Link style={{color: "#5a5149", fontWeight: "bold", textDecoration: "underline" }} 
+                        to="/createaccount">Register</Link> now.
+                </Typography>
+            </CardContent>
+        </Card>
+        </MuiThemeProvider>
     );
 }
 

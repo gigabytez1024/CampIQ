@@ -1,27 +1,16 @@
-import React, { useReducer, useState, useEffect } from "react";
+import React, { useReducer } from "react";
+import { Link } from "react-router-dom";
 import { MuiThemeProvider } from "@material-ui/core/styles";
 import {
     Card,
     CardHeader,
     CardContent,
-    CardMedia,
     Typography,
     TextField,
-    Button,
-    TableContainer,
-    Table,
-    TableHead,
-    TableBody,
-    TableRow,
-    TableCell,
-    Dialog,
-    DialogTitle,
-    DialogContent,
-    DialogContentText,
-    DialogActions
+    Button
 } from "@material-ui/core";
 import theme from "../theme";
-import { registerWithEmailAndPassword, signInWithGoogle } from "../firebase";
+import { registerWithEmailAndPassword } from "../firebase";
 
 const CreateAccount = () => {
 
@@ -29,11 +18,6 @@ const CreateAccount = () => {
         _id: "",
         firstName: "",
         lastName: "",
-        streetAddress: "",
-        city: "",
-        province: "",
-        postalCode: "",
-        phoneNumber: "",
         email: "",
         password: "",
         showPassword: false
@@ -44,11 +28,11 @@ const CreateAccount = () => {
 
     const handleChange = (prop) => (event) => {
         setState({ ...state, [prop]: event.target.value });
-      };
+    };
 
-      const register = () => {
-        registerWithEmailAndPassword(state.lastName, state.email, state.password);
-      };
+    const register = () => {
+        registerWithEmailAndPassword(state.firstName, state.lastName, state.email, state.password);
+    };
 
     // Disable CREATE ACCOUNT button until all input fields are populated
     const emptyorundefined =
@@ -56,16 +40,6 @@ const CreateAccount = () => {
         state.firstName === "" ||
         state.lastName === undefined ||
         state.lastName === "" ||
-        state.streetAddress === undefined ||
-        state.streetAddress === "" ||
-        state.city === undefined ||
-        state.city === "" ||
-        state.province === undefined ||
-        state.province === "" ||
-        state.postalCode === undefined ||
-        state.postalCode === "" ||
-        state.phoneNumber === undefined ||
-        state.phoneNumber === "" ||
         state.email === undefined ||
         state.email === "" ||
         state.password === undefined ||
@@ -75,99 +49,65 @@ const CreateAccount = () => {
         <MuiThemeProvider theme={theme}>
         <Card>
             <CardHeader title="Create Account" style={{ textAlign: "center", paddingBottom: 0 }} />
-            <CardContent style={{ paddingTop: 10}}>
+            <CardContent style={{ textAlign: "center", paddingTop: 10}}>
                 <TextField
                     autoFocus
                     variant="outlined"
                     size="small"
+                    label="First Name"
                     value={state.firstName}
                     onChange={handleChange('firstName')}
                     error={state.firstName === ""}
                     helperText={state.firstName === "" ? "First Name is required" : ""}
                 />
+                <br/><br/>
                 <TextField
                     variant="outlined"
                     size="small"
+                    label="Last Name"
                     value={state.lastName}
                     onChange={handleChange('lastName')}
                     error={state.lastName === ""}
-                    helperText="Last Name"
+                    helperText={state.lastName === "" ? "Last Name is required" : ""}
                 />
+                <br/><br/>
                 <TextField
                     variant="outlined"
                     size="small"
-                    value={state.streetAddress}
-                    onChange={handleChange('streetAddress')}
-                    error={state.streetAddress === ""}
-                    helperText="Street Address"
-                    fullWidth
-                />
-                <TextField
-                    variant="outlined"
-                    size="small"
-                    value={state.city}
-                    onChange={handleChange('city')}
-                    error={state.city === ""}
-                    helperText="City"
-                />
-                <TextField
-                    variant="outlined"
-                    size="small"
-                    value={state.province}
-                    onChange={handleChange('province')}
-                    error={state.province === ""}
-                    helperText="Province"
-                />
-                <TextField
-                    variant="outlined"
-                    size="small"
-                    value={state.postalCode}
-                    onChange={handleChange('postalCode')}
-                    error={state.postalCode === ""}
-                    helperText="Postal Code"
-                />
-                <TextField
-                    variant="outlined"
-                    size="small"
-                    value={state.phoneNumber}
-                    onChange={handleChange('phoneNumber')}
-                    error={state.phoneNumber === ""}
-                    helperText="Phone #"
-                />
-                <TextField
-                    variant="outlined"
-                    size="small"
+                    label="Email Address"
                     value={state.email}
                     onChange={handleChange('email')}
                     error={state.email === ""}
-                    helperText="Email Address"
+                    helperText={state.email === "" ? "Email Address is required" : ""}
                 />
+                <br/><br/>
                 <TextField
                     variant="outlined"
                     size="small"
+                    label="Password"
+                    type="password"
                     value={state.password}
                     onChange={handleChange('password')}
                     error={state.password === ""}
-                    helperText="Password"
+                    helperText={state.password === "" ? "Password is required" : ""}
                 />
-                <div style={{ textAlign: "center" }}>
+                <div style={{ textAlign: "center", paddingTop: "2vh" }}>
                     <Button 
                         variant="contained" 
                         color="secondary" 
                         disabled={emptyorundefined}
-                        onClick={register}>
-                        Create Account
+                        onClick={register}
+                    >
+                            Create Account
                     </Button>
                 </div>
-                <div style={{ flexDirection: "column" }}>
-                    {state.firstName}
-                    {state.lastName}
-                </div>
+                <Typography variant="subtitle2" align="center" style={{ paddingTop: "1vh"}}>
+                    Already have an account? <Link style={{color: "#5a5149", fontWeight: "bold", textDecoration: "underline" }} to="/login">Login</Link> now.
+                </Typography>
             </CardContent>
         </Card>
         </MuiThemeProvider>
     );
-
 };
 
 export default CreateAccount;
