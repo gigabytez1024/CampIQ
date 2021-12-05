@@ -34,6 +34,7 @@ import "assets/plugins/nucleo/css/nucleo.css";
 // core styles
 import "assets/scss/argon-dashboard-pro-material-ui.scss?v1.0.0";
 import Booking from "./booking";
+import TripSummaryComponent from "./tripsummary";
 
 const App = () => {
   const [item, setItem] = useState({ msg: null, anchorEl: null });
@@ -84,6 +85,12 @@ const App = () => {
             <MenuItem component={Link} to="/addreview" onClick={handleClose}>
               Add a Review
             </MenuItem>
+                 <MenuItem component={Link} to="/tripSummaryComponent" onClick={handleClose}>
+              Trip Summary test link (to be removed)
+            </MenuItem>
+                    <MenuItem component={Link} to="/login" onClick={handleClose}>
+              Log in
+            </MenuItem>
             <MenuItem
               component={Link}
               to="/findcampground"
@@ -109,6 +116,9 @@ const App = () => {
         <Route path="/packlist" render={() => <PackListComponent />} />
         <Route path="/findcampground" render={() => <FindCampground />} />
         <Route path="/memories" render={() => <Memories/>}/>
+        <Route path ="/createaccount" render={() => <CreateAccount/>}/>
+        <Route path = "/tripSummaryComponent" render={() => <TripSummaryComponent/>}/>
+        <Route path="/login" render={() =><Login/>}/>
         <Route path="/home" component={Home} />
         <Route path="/booking" component={Booking}/>
       </div>

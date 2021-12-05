@@ -4,13 +4,13 @@ import "firebase/compat/firestore";
 
 // For Firebase JS SDK v7.20.0 and later, measurementId is optional
 const firebaseConfig = {
-    apiKey: "AIzaSyDQ_JGRVXeudW06p1i0EDr_G1n0uknhTUQ",
-    authDomain: "campiq-a7756.firebaseapp.com",
-    projectId: "campiq-a7756",
-    storageBucket: "campiq-a7756.appspot.com",
-    messagingSenderId: "1001837774458",
-    appId: "1:1001837774458:web:b7ce2cbcd4dadfc0715dc3",
-    measurementId: "G-RQPG7L8RTB"
+  apiKey: "AIzaSyDQ_JGRVXeudW06p1i0EDr_G1n0uknhTUQ",
+  authDomain: "campiq-a7756.firebaseapp.com",
+  projectId: "campiq-a7756",
+  storageBucket: "campiq-a7756.appspot.com",
+  messagingSenderId: "1001837774458",
+  appId: "1:1001837774458:web:b7ce2cbcd4dadfc0715dc3",
+  measurementId: "G-RQPG7L8RTB"
 };
 
 const app = firebase.initializeApp(firebaseConfig);

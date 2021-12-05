@@ -5,8 +5,14 @@ import DeleteIcon from "@material-ui/icons/Delete";
 import UpdateIcon from "@material-ui/icons/Update";
 import "./style.css";
 import {db} from "../firebase"
+import userEvent from "@testing-library/user-event";
 
 const PackListComponent = () => {
+
+
+
+
+  
   const [item, setItem] = useState("");
   const [newItem, setNewItem] = useState([]);
 
@@ -27,7 +33,8 @@ const PackListComponent = () => {
   };
 
   const saveEvent = () => {
-db.collection('users').doc('packlist').set({packlist: newItem}, {merge: false})
+    
+db.collection('users/{$userId}/packinglist').doc().set({packlist: newItem}, {merge: false})
 setNewItem([]);
   }
 
