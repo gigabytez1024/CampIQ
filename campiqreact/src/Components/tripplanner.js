@@ -2,8 +2,7 @@ import React from "react";
 import { MuiThemeProvider } from "@material-ui/core/styles";
 import { Card, CardHeader, CardContent, Button } from "@material-ui/core";
 import theme from "../theme";
-import { Link, Route } from "react-router-dom";
-import PackListComponent from "./packlist";
+import { Link } from "react-router-dom";
 
 const TripPlannerComponent = () => {
   return (
@@ -15,7 +14,7 @@ const TripPlannerComponent = () => {
           <Button variant="contained" color="secondary" align="left" component={Link} to="/packlist">
             What to Bring
           </Button>
-          <Button variant="contained" color="secondary" style={{ marginLeft: "25%" }}>
+          <Button variant="contained" color="secondary" component={Link} to="/booking" style={{ marginLeft: "25%" }}>
             Book A Site
           </Button>
         </CardContent>

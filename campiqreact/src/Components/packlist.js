@@ -2,7 +2,9 @@ import React, { useState } from "react";
 import Button from "@material-ui/core/Button";
 import AddIcon from "@material-ui/icons/Add";
 import DeleteIcon from "@material-ui/icons/Delete";
+import UpdateIcon from "@material-ui/icons/Update";
 import "./style.css";
+import {db} from "../firebase"
 
 const PackListComponent = () => {
   const [item, setItem] = useState("");
@@ -12,7 +14,7 @@ const PackListComponent = () => {
     setItem(event.target.value);
   };
 
-  const secondEvent = () => {
+  const addEvent = () => {
     setNewItem((prev) => {
       return [...prev, item];
     });
@@ -20,9 +22,14 @@ const PackListComponent = () => {
     setItem("");
   };
 
-  const thirdEvent = () => {
+  const deleteEvent = () => {
     setNewItem([]);
   };
+
+  const saveEvent = () => {
+db.collection('users').doc('packlist').set({packlist: newItem}, {merge: false})
+setNewItem([]);
+  }
 
   return (
     <div>
@@ -30,7 +37,7 @@ const PackListComponent = () => {
       <br />
       <div className="childOne">
         <input type="text" value={item} placeholder="Add an item" onChange={firstEvent} />
-        <Button className="AddBtn" onClick={secondEvent}>
+        <Button className="AddBtn" onClick={addEvent}>
           <AddIcon />
         </Button>
         <br />
@@ -44,9 +51,15 @@ const PackListComponent = () => {
       <br />
       <br />
       <div className="childTwo">
-        <Button className="delBtn" onClick={thirdEvent}>
+        <Button className="delBtn" onClick={deleteEvent}>
           <DeleteIcon />
           Delete All
+        </Button>
+      </div>
+      <div className="childTwo">
+        <Button className="saveBtn" onClick={saveEvent}>
+          <UpdateIcon />
+          Save
         </Button>
       </div>
     </div>

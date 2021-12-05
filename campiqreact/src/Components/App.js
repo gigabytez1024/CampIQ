@@ -33,6 +33,7 @@ import "@fortawesome/fontawesome-free/css/all.min.css";
 import "assets/plugins/nucleo/css/nucleo.css";
 // core styles
 import "assets/scss/argon-dashboard-pro-material-ui.scss?v1.0.0";
+import Booking from "./booking";
 
 const App = () => {
 
@@ -118,6 +119,7 @@ const App = () => {
         <Route path="/login" render={() => <Login/>}/>
         <Route path="/createaccount" render={() => <CreateAccount/>}/>
         <Route path="/home" component={Home} />
+        <Route path="/booking" component={Booking}/>
       </div>
     </MuiThemeProvider>
   );
