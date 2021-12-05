@@ -1,14 +1,6 @@
 import React, { useState } from "react";
 import { Route, Link, Redirect } from "react-router-dom";
 import Reorder from "@material-ui/icons/Reorder";
-import Home from "./home";
-import TripPlannerComponent from "./tripplanner";
-import Location from "./location";
-import AddReview from "./addreview";
-import PackListComponent from "./packlist";
-import AccountBenefits from "./accountbenefits";
-import CreateAccount from "./createaccount";
-import Login from "./login";
 import { MuiThemeProvider } from "@material-ui/core/styles";
 import {
   Toolbar,
@@ -20,9 +12,17 @@ import {
 } from "@material-ui/core";
 import theme from "assets/theme/theme.js";
 import logo from "./campIQLogo.jpg";
+// Components
+import Home from "./home";
+import AccountBenefits from "./accountbenefits";
+import TripPlannerComponent from "./tripplanner";
+import AddReview from "./addreview";
 import FindCampground from "./findcampground";
 import Memories from "./memories";
-
+import { logout } from "../firebase";
+import PackListComponent from "./packlist";
+import CreateAccount from "./createaccount";
+import Login from "./login";
 // plugins styles from node_modules
 import "react-perfect-scrollbar/dist/css/styles.css";
 import "@fullcalendar/common/main.min.css";
@@ -37,14 +37,22 @@ import Booking from "./booking";
 import TripSummaryComponent from "./tripsummary";
 
 const App = () => {
+
   const [item, setItem] = useState({ msg: null, anchorEl: null });
 
   const [anchorEl, setAnchorEl] = useState(null);
+
   const handleClose = () => {
     setAnchorEl(null);
   };
+
   const handleClick = (event) => {
     setAnchorEl(event.currentTarget);
+  };
+  // Logout and redirect user to home page
+  const handleLogout = () => {
+    setAnchorEl(null);
+    logout();
   };
 
   return (
@@ -72,11 +80,10 @@ const App = () => {
             <MenuItem component={Link} to="/home" onClick={handleClose}>
               Home
             </MenuItem>
-            <MenuItem
-              component={Link}
-              to="/accountbenefits"
-              onClick={handleClose}
-            >
+            <MenuItem component={Link} to="/login" onClick={handleClose}>
+              Login
+            </MenuItem>
+            <MenuItem component={Link} to="/accountbenefits" onClick={handleClose}>
               Account Benefits
             </MenuItem>
             <MenuItem component={Link} to="/tripplanner" onClick={handleClose}>
@@ -92,14 +99,14 @@ const App = () => {
               Log in
             </MenuItem>
             <MenuItem
-              component={Link}
-              to="/findcampground"
-              onClick={handleClose}
-            >
+              component={Link} to="/findcampground" onClick={handleClose}>
               Find Campground
             </MenuItem>
             <MenuItem component={Link} to="/memories" onClick={handleClose}>
               Memories
+            </MenuItem>
+            <MenuItem component={Link} to="/home" onClick={handleLogout}>
+              Logout
             </MenuItem>
           </Menu>
         </Toolbar>
@@ -116,9 +123,8 @@ const App = () => {
         <Route path="/packlist" render={() => <PackListComponent />} />
         <Route path="/findcampground" render={() => <FindCampground />} />
         <Route path="/memories" render={() => <Memories/>}/>
-        <Route path ="/createaccount" render={() => <CreateAccount/>}/>
-        <Route path = "/tripSummaryComponent" render={() => <TripSummaryComponent/>}/>
-        <Route path="/login" render={() =><Login/>}/>
+        <Route path="/login" render={() => <Login/>}/>
+        <Route path="/createaccount" render={() => <CreateAccount/>}/>
         <Route path="/home" component={Home} />
         <Route path="/booking" component={Booking}/>
       </div>
