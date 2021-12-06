@@ -23,6 +23,8 @@ import { logout } from "../firebase";
 import PackListComponent from "./packlist";
 import CreateAccount from "./createaccount";
 import Login from "./login";
+import Booking from "./booking";
+import ResetPassword from "./resetpassword";
 // plugins styles from node_modules
 import "react-perfect-scrollbar/dist/css/styles.css";
 import "@fullcalendar/common/main.min.css";
@@ -33,7 +35,7 @@ import "@fortawesome/fontawesome-free/css/all.min.css";
 import "assets/plugins/nucleo/css/nucleo.css";
 // core styles
 import "assets/scss/argon-dashboard-pro-material-ui.scss?v1.0.0";
-import Booking from "./booking";
+
 
 const App = () => {
 
@@ -118,6 +120,7 @@ const App = () => {
         <Route path="/memories" render={() => <Memories/>}/>
         <Route path="/login" render={() => <Login/>}/>
         <Route path="/createaccount" render={() => <CreateAccount/>}/>
+        <Route path="/resetpassword" render={() => <ResetPassword/>}/>
         <Route path="/home" component={Home} />
         <Route path="/booking" component={Booking}/>
       </div>

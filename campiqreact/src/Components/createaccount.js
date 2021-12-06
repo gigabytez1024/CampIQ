@@ -1,5 +1,5 @@
 import React, { useReducer } from "react";
-import { Link } from "react-router-dom";
+import { Link, useHistory } from "react-router-dom";
 import { MuiThemeProvider } from "@material-ui/core/styles";
 import {
     Card,
@@ -23,6 +23,8 @@ const CreateAccount = () => {
         showPassword: false
     };
 
+    const history = useHistory();
+
     const reducer = (state, newState) => ({ ...state, ...newState });
     const [state, setState] = useReducer(reducer, initialState);
 
@@ -32,6 +34,7 @@ const CreateAccount = () => {
 
     const register = () => {
         registerWithEmailAndPassword(state.firstName, state.lastName, state.email, state.password);
+        history.replace("/login");
     };
 
     // Disable CREATE ACCOUNT button until all input fields are populated
@@ -102,7 +105,8 @@ const CreateAccount = () => {
                     </Button>
                 </div>
                 <Typography variant="subtitle2" align="center" style={{ paddingTop: "1vh"}}>
-                    Already have an account? <Link style={{color: "#5a5149", fontWeight: "bold", textDecoration: "underline" }} to="/login">Login</Link> now.
+                    Already have an account? <Link style={{color: "#5a5149", fontWeight: "bold", textDecoration: "underline" }} 
+                        to="/login">Login</Link> now.
                 </Typography>
             </CardContent>
         </Card>

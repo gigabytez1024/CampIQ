@@ -72,7 +72,7 @@ function Login() {
                 </div>
                 <Typography variant="subtitle2" align="center" style={{ paddingTop: "1vh"}}>
                     <Link style={{color: "#5a5149", fontWeight: "bold", textDecoration: "underline" }} 
-                        to="/reset">Forgot Password</Link>
+                        to="/resetpassword">Forgot Password</Link>
                 </Typography>
                 <Typography variant="subtitle2" align="center" style={{ paddingTop: "1vh"}}>
                     Don't have an account? <Link style={{color: "#5a5149", fontWeight: "bold", textDecoration: "underline" }} 
