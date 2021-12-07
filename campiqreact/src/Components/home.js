@@ -14,6 +14,9 @@ import CardActivityFeed from "./Cards/Dashboard/CardActivityFeed";
 import CardLightTableSortable from "./Cards/Sortable/CardLightTableSortable";
 import componentStyles from "assets/theme/views/admin/dashboard.js";
 import componentStylesCardDeck from "assets/theme/components/cards/card-deck";
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
+
 const useStyles = makeStyles(componentStyles);
 const useStylesCardDeck = makeStyles(componentStylesCardDeck);
 const Home = () => {
@@ -50,6 +53,8 @@ const Home = () => {
         >
           &copy;5Starz
         </Typography>
+                <ToastContainer />
+
       </Card>
     </MuiThemeProvider>
   );
