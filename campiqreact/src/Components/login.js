@@ -25,7 +25,7 @@ function Login() {
         // maybe trigger a loading screen
         return;
         }
-        if (user) history.replace("/home");
+        if (user) history.replace("/login");
     }, [user, loading]);
 
     // Disable LOGIN button until all input fields are populated
@@ -63,9 +63,10 @@ function Login() {
                 <div style={{ textAlign: "center", paddingTop: "2vh" }}>
                     <Button 
                         variant="contained" 
-                        color="secondary" 
+                        color="secondary"                         
                         disabled={emptyorundefined}
                         onClick={() => signInWithEmailAndPassword(email, password)}
+                        component={Link} to="/home"
                     >
                             Login
                     </Button>

@@ -1,11 +1,12 @@
 import React , {useEffect} from "react";
 import {useState} from 'react';
-import db from "../firebasedb";
+//import {db} from "../firebasedb";
+import {auth, db} from "../firebase"
 
 const TripSummaryComponent = () => {
 
 const [info , setInfo] = useState([]);
-  
+  //const uid = auth.currentUser.uid;
     // Start the fetch operation as soon as
     // the page loads
     window.addEventListener('load', () => {
@@ -16,7 +17,10 @@ const [info , setInfo] = useState([]);
 
     // Fetch the required data using the get() method
     const Fetchdata = ()=>{
-        db.collection("users").get().then((querySnapshot) => {
+        
+        db.collection("users")
+        
+    .get().then((querySnapshot) => {
              
             // Loop through the data and store
             // it in array to display

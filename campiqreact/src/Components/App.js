@@ -58,7 +58,7 @@ const App = () => {
   return (
     <MuiThemeProvider theme={theme}>
       <AppBar position="static">
-        <Toolbar>
+        <Toolbar >
           <Typography variant="h6" color="inherit">
             <div className="center-image">
               <img src={logo} />
@@ -95,9 +95,7 @@ const App = () => {
                  <MenuItem component={Link} to="/tripSummaryComponent" onClick={handleClose}>
               Trip Summary test link (to be removed)
             </MenuItem>
-                    <MenuItem component={Link} to="/login" onClick={handleClose}>
-              Log in
-            </MenuItem>
+                   
             <MenuItem
               component={Link} to="/findcampground" onClick={handleClose}>
               Find Campground
@@ -125,6 +123,7 @@ const App = () => {
         <Route path="/memories" render={() => <Memories/>}/>
         <Route path="/login" render={() => <Login/>}/>
         <Route path="/createaccount" render={() => <CreateAccount/>}/>
+        <Route path="/tripSummaryComponent" render={() => <TripSummaryComponent/>}/>
         <Route path="/home" component={Home} />
         <Route path="/booking" component={Booking}/>
       </div>

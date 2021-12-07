@@ -9,12 +9,32 @@ import theme from '../theme';
 import Location from "./location";
 import ReactStars from "react-rating-stars-component";
 import { render } from "react-dom";
+import { Link } from "react-router-dom";
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
+
+
 
 const AddReview = () => {
     let [campsite, setCampsite] = useState("");
     let [campsiteChosen, setCampsiteChosen] = useState(false);
     let [reviewSet, setReviewSet] = useState(false);
     let [newRating, setNewRating] = useState(0);
+      function notify() {
+    toast("🏕️ Rating Saved!", {
+    position: "bottom-center",
+    autoClose: 5000,
+    hideProgressBar: false,
+    closeOnClick: true,
+    pauseOnHover: true,
+    draggable: true,
+    progress: undefined,
+    })
+  }
+
+
+
+
 
     useEffect(() => {
         setCampsite("");
@@ -84,8 +104,11 @@ const AddReview = () => {
                 setReviewSet(true);
                 setCampsite("");
                 setCampsiteChosen(false);
+                
+               notify();
             }
         } catch (error) {
+            notify();
             console.log(error);
         }
     }
@@ -132,9 +155,24 @@ const AddReview = () => {
                             <div style={{ textAlign: "center", marginTop: 0 }}>
                                 <Button style={{ alignContent: "center" }}
                                     onClick={submitReview}
-                                    fontSize="large">
+                                    fontSize="large"
+                                    
+
+                                    >
                                     Submit
                                 </Button>
+                                <Button component={Link} to="/home">
+                                    Home
+                                </Button>
+                                <ToastContainer position="bottom-center"
+                                autoClose={5000}
+                                hideProgressBar={false}
+                                newestOnTop={false}
+                                closeOnClick
+                                rtl={false}
+                                pauseOnFocusLoss
+                                draggable
+                                pauseOnHover/>
                             </div>
                         </div>
                     </Card>
