@@ -319,8 +319,8 @@ export default function CampgroundListComponent() {
                           handleClick(
                             event,
                             row.campsitename,
-                            row.userrating,
-                            row.googlerating
+                            row.googlerating,
+                            row.userrating
                           )
                         }
                         aria-checked={isItemSelected}
