@@ -1,7 +1,6 @@
 import firebase from "firebase/compat/app";
 import "firebase/compat/auth";
 import "firebase/compat/firestore";
-import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 // For Firebase JS SDK v7.20.0 and later, measurementId is optional
 const firebaseConfig = {
@@ -17,19 +16,11 @@ const firebaseConfig = {
 const app = firebase.initializeApp(firebaseConfig);
 const auth = app.auth();
 const db = app.firestore();
-  function notify() {
-    toast("🏕️ Welcome back!", {
-      position: toast.POSITION.BOTTOM_CENTER,
-      className: 'toast-success',
-      progressClassName: 'success-progress-bar',
-      autoClose: 4000, 
-      toastId:1
-    })
-  }
+
 const signInWithEmailAndPassword = async (email, password) => {
     try {
         await auth.signInWithEmailAndPassword(email, password);
-         notify()
+        alert("Welcome back!");
     } catch (err) {
         console.error(err);
         alert(err.message);
@@ -47,7 +38,7 @@ const registerWithEmailAndPassword = async (firstname, lastname, email, password
             authProvider: "local",
             email,
         });
-
+        alert("Account created!");
     } catch (err) {
         console.error(err);
         alert(err.message);
@@ -66,6 +57,7 @@ const sendPasswordResetEmail = async (email) => {
 
 const logout = () => {
     auth.signOut();
+    alert("Goodbye!");
 };
 
 export {
@@ -76,5 +68,4 @@ export {
     sendPasswordResetEmail,
     logout,
     app
-    
 };

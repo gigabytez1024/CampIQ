@@ -13,28 +13,23 @@ import { Link } from "react-router-dom";
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 
-
-
 const AddReview = () => {
     let [campsite, setCampsite] = useState("");
     let [campsiteChosen, setCampsiteChosen] = useState(false);
     let [reviewSet, setReviewSet] = useState(false);
     let [newRating, setNewRating] = useState(0);
-      function notify() {
-    toast("🏕️ Rating Saved!", {
-    position: "bottom-center",
-    autoClose: 5000,
-    hideProgressBar: false,
-    closeOnClick: true,
-    pauseOnHover: true,
-    draggable: true,
-    progress: undefined,
-    })
-  }
 
-
-
-
+    function notify() {
+        toast("🏕️ Rating Saved!", {
+        position: "bottom-center",
+        autoClose: 5000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+        })
+    }
 
     useEffect(() => {
         setCampsite("");
@@ -104,15 +99,12 @@ const AddReview = () => {
                 setReviewSet(true);
                 setCampsite("");
                 setCampsiteChosen(false);
-                
-               notify();
+                notify();
             }
         } catch (error) {
-            notify();
             console.log(error);
         }
     }
-
 
     return (
         <MuiThemeProvider theme={theme}>
@@ -156,23 +148,22 @@ const AddReview = () => {
                                 <Button style={{ alignContent: "center" }}
                                     onClick={submitReview}
                                     fontSize="large"
-                                    
-
-                                    >
+                                >
                                     Submit
                                 </Button>
                                 <Button component={Link} to="/home">
                                     Home
                                 </Button>
                                 <ToastContainer position="bottom-center"
-                                autoClose={5000}
-                                hideProgressBar={false}
-                                newestOnTop={false}
-                                closeOnClick
-                                rtl={false}
-                                pauseOnFocusLoss
-                                draggable
-                                pauseOnHover/>
+                                    autoClose={5000}
+                                    hideProgressBar={false}
+                                    newestOnTop={false}
+                                    closeOnClick
+                                    rtl={false}
+                                    pauseOnFocusLoss
+                                    draggable
+                                    pauseOnHover
+                                />
                             </div>
                         </div>
                     </Card>

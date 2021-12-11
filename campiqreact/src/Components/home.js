@@ -53,8 +53,7 @@ const Home = () => {
         >
           &copy;5Starz
         </Typography>
-                <ToastContainer />
-
+        <ToastContainer />
       </Card>
     </MuiThemeProvider>
   );
