@@ -35,7 +35,12 @@ import "@fortawesome/fontawesome-free/css/all.min.css";
 import "assets/plugins/nucleo/css/nucleo.css";
 // core styles
 import "assets/scss/argon-dashboard-pro-material-ui.scss?v1.0.0";
+<<<<<<< HEAD
 
+=======
+import Booking from "./booking";
+import TripSummaryComponent from "./tripsummary";
+>>>>>>> krissys
 
 const App = () => {
 
@@ -59,7 +64,7 @@ const App = () => {
   return (
     <MuiThemeProvider theme={theme}>
       <AppBar position="static">
-        <Toolbar>
+        <Toolbar >
           <Typography variant="h6" color="inherit">
             <div className="center-image">
               <img src={logo} />
@@ -93,6 +98,10 @@ const App = () => {
             <MenuItem component={Link} to="/addreview" onClick={handleClose}>
               Add a Review
             </MenuItem>
+                 <MenuItem component={Link} to="/tripSummaryComponent" onClick={handleClose}>
+              Trip Summary test link (to be removed)
+            </MenuItem>
+                   
             <MenuItem
               component={Link} to="/findcampground" onClick={handleClose}>
               Find Campground
@@ -120,7 +129,11 @@ const App = () => {
         <Route path="/memories" render={() => <Memories/>}/>
         <Route path="/login" render={() => <Login/>}/>
         <Route path="/createaccount" render={() => <CreateAccount/>}/>
+<<<<<<< HEAD
         <Route path="/resetpassword" render={() => <ResetPassword/>}/>
+=======
+        <Route path="/tripSummaryComponent" render={() => <TripSummaryComponent/>}/>
+>>>>>>> krissys
         <Route path="/home" component={Home} />
         <Route path="/booking" component={Booking}/>
       </div>
