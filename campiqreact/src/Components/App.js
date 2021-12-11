@@ -25,7 +25,6 @@ import CreateAccount from "./createaccount";
 import Login from "./login";
 import Booking from "./booking";
 import ResetPassword from "./resetpassword";
-import Booking from "./booking";
 import TripSummaryComponent from "./tripsummary";
 // plugins styles from node_modules
 import "react-perfect-scrollbar/dist/css/styles.css";
