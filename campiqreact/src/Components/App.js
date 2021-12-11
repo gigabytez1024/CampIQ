@@ -25,6 +25,8 @@ import CreateAccount from "./createaccount";
 import Login from "./login";
 import Booking from "./booking";
 import ResetPassword from "./resetpassword";
+import Booking from "./booking";
+import TripSummaryComponent from "./tripsummary";
 // plugins styles from node_modules
 import "react-perfect-scrollbar/dist/css/styles.css";
 import "@fullcalendar/common/main.min.css";
@@ -35,12 +37,6 @@ import "@fortawesome/fontawesome-free/css/all.min.css";
 import "assets/plugins/nucleo/css/nucleo.css";
 // core styles
 import "assets/scss/argon-dashboard-pro-material-ui.scss?v1.0.0";
-<<<<<<< HEAD
-
-=======
-import Booking from "./booking";
-import TripSummaryComponent from "./tripsummary";
->>>>>>> krissys
 
 const App = () => {
 
@@ -101,7 +97,6 @@ const App = () => {
                  <MenuItem component={Link} to="/tripSummaryComponent" onClick={handleClose}>
               Trip Summary test link (to be removed)
             </MenuItem>
-                   
             <MenuItem
               component={Link} to="/findcampground" onClick={handleClose}>
               Find Campground
@@ -129,11 +124,8 @@ const App = () => {
         <Route path="/memories" render={() => <Memories/>}/>
         <Route path="/login" render={() => <Login/>}/>
         <Route path="/createaccount" render={() => <CreateAccount/>}/>
-<<<<<<< HEAD
         <Route path="/resetpassword" render={() => <ResetPassword/>}/>
-=======
         <Route path="/tripSummaryComponent" render={() => <TripSummaryComponent/>}/>
->>>>>>> krissys
         <Route path="/home" component={Home} />
         <Route path="/booking" component={Booking}/>
       </div>
