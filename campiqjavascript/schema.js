@@ -15,7 +15,7 @@ type Campground {
  unservicedfee: String
  servicedfee: String
  servicedsewerfee: String
- equipmentrental: String
+ equipmentrentals: String
  firewood: String
  dumpstation: String
  additionalvehicle: String

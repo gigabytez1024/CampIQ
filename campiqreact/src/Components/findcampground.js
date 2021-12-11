@@ -1,9 +1,28 @@
 import React, { useReducer, useEffect, useState } from "react";
 import PropTypes from "prop-types";
-import { withStyles } from "@material-ui/styles";
-import { TableCell, TableBody, TableContainer, TableHead, TablePagination, TableRow, TableSortLabel, Toolbar, Typography, Paper, FormControlLabel, Box, Table } from '@material-ui/core';
-import { Switch } from "@material-ui/core";
+import { alpha } from "@mui/material/styles";
+import Box from "@mui/material/Box";
+import Table from "@mui/material/Table";
+import TableBody from "@mui/material/TableBody";
+import TableCell from "@mui/material/TableCell";
+import TableContainer from "@mui/material/TableContainer";
+import TableHead from "@mui/material/TableHead";
+import TablePagination from "@mui/material/TablePagination";
+import TableRow from "@mui/material/TableRow";
+import TableSortLabel from "@mui/material/TableSortLabel";
+import Toolbar from "@mui/material/Toolbar";
+import Typography from "@mui/material/Typography";
+import Paper from "@mui/material/Paper";
+import IconButton from "@mui/material/IconButton";
+import FormControlLabel from "@mui/material/FormControlLabel";
+import Switch from "@mui/material/Switch";
 import { visuallyHidden } from "@mui/utils";
+import SearchBar from "material-ui-search-bar";
+import KeyboardArrowDownIcon from "@mui/icons-material/KeyboardArrowDown";
+import KeyboardArrowUpIcon from "@mui/icons-material/KeyboardArrowUp";
+import Collapse from "@mui/material/Collapse";
+import ReactStars from "react-rating-stars-component";
+import CampMap from "./campmap";
 
 function descendingComparator(a, b, orderBy) {
   if (b[orderBy] < a[orderBy]) {
@@ -52,18 +71,6 @@ const headCells = [
     disablePadding: false,
     label: "Province",
   },
-  {
-    id: "unservicedfee",
-    numeric: true,
-    disablePadding: false,
-    label: "Unserviced Fee",
-  },
-  {
-    id: "servicedfee",
-    numeric: true,
-    disablePadding: false,
-    label: "Serviced Fee",
-  },
 ];
 
 function EnhancedTableHead(props) {
@@ -75,7 +82,7 @@ function EnhancedTableHead(props) {
   return (
     <TableHead>
       <TableRow>
-        <TableCell></TableCell>
+        <TableCell width="1%"></TableCell>
         {headCells.map((headCell) => (
           <TableCell
             key={headCell.id}
@@ -118,34 +125,16 @@ const EnhancedTableToolbar = (props) => {
       sx={{
         pl: { sm: 2 },
         pr: { xs: 1, sm: 1 },
-        ...(numSelected > 0 && {
-          bgcolor: (theme) =>
-            withStyles(
-              theme.palette.primary.main,
-              theme.palette.action.activatedOpacity
-            ),
-        }),
       }}
     >
-      {numSelected > 0 ? (
-        <Typography
-          sx={{ flex: "1 1 100%" }}
-          color="inherit"
-          variant="subtitle1"
-          component="div"
-        >
-          {numSelected} selected
-        </Typography>
-      ) : (
-        <Typography
-          sx={{ flex: "1 1 100%" }}
-          variant="h6"
-          id="tableTitle"
-          component="div"
-        >
-          Campground List
-        </Typography>
-      )}
+      <Typography
+        sx={{ flex: "1 1 100%" }}
+        variant="h6"
+        id="tableTitle"
+        component="div"
+      >
+        Campground List
+      </Typography>
     </Toolbar>
   );
 };
@@ -156,7 +145,7 @@ EnhancedTableToolbar.propTypes = {
 
 export default function CampgroundListComponent() {
   const [order, setOrder] = React.useState("asc");
-  const [orderBy, setOrderBy] = React.useState("calories");
+  const [orderBy, setOrderBy] = React.useState("campsitename");
   const [selected, setSelected] = React.useState([]);
   const [page, setPage] = React.useState(0);
   const [dense, setDense] = React.useState(false);
@@ -167,16 +156,48 @@ export default function CampgroundListComponent() {
     province: [],
     city: [],
     campgrounds: [],
+    campgroundsStatic: [],
+    filteredRows: [],
+    isSearched: false,
     radioDataSent: false,
     tableDataSent: false,
   };
   const GRAPHURL = "http://localhost:5000/graphql";
 
-  //GRAPHQL API FUNCTIONS
-  //Load all advisories and unique traveller names
-  var queryCampgrounds = `query{campgrounds{campsitename,city,province, unservicedfee, servicedfee}}`;
+  var queryCampgrounds = `query{campgrounds{campsitename,city,province,unservicedfee,servicedfee,googlerating,userrating,latitude,longitude,equipmentrentals,firewood,dumpstation,additionalvehicle}}`;
   const reducer = (state, newState) => ({ ...state, ...newState });
   const [state, setState] = useReducer(reducer, initialState);
+  const [searched, setSearched] = useState("");
+  const [open, setOpen] = React.useState(false);
+  const [googleRating, getGoogleRating] = React.useState(0);
+  const [userRating, getUserRating] = React.useState(0);
+
+  const userRatings = {
+    size: 30,
+    value: userRating,
+    edit: false,
+  };
+
+  const googleRatings = {
+    size: 30,
+    value: googleRating,
+    edit: false,
+  };
+
+  const requestSearch = (searchedVal) => {
+    state.filteredRows = state.campgrounds?.filter((row) => {
+      return row.campsitename.toLowerCase().includes(searchedVal.toLowerCase());
+    });
+    setState({
+      campgrounds: state.filteredRows,
+    });
+  };
+
+  const cancelSearch = () => {
+    setSearched("");
+    requestSearch(searched);
+  };
+
   useEffect(() => {
     fetchCampgrouds();
   }, []);
@@ -199,6 +220,7 @@ export default function CampgroundListComponent() {
       setState({
         campgrounds: json.data.campgrounds,
         campgroundNames: uniqueNames,
+        filteredRows: json.data.campgrounds,
       });
     } catch (error) {
       console.log(error);
@@ -214,21 +236,14 @@ export default function CampgroundListComponent() {
     setOrderBy(property);
   };
 
-  const handleSelectAllClick = (event) => {
-    if (event.target.checked) {
-      const newSelecteds = state.campgroundNames.map((n) => n.campsitename);
-      setSelected(newSelecteds);
-      return;
-    }
-    setSelected([]);
-  };
-
-  const handleClick = (event, campsitename) => {
+  const handleClick = (event, campsitename, googleRating, userRating) => {
     const selectedIndex = selected.indexOf(campsitename);
     let newSelected = [];
 
-    // if (selectedIndex === -1) {
-    //   newSelected = newSelected.concat(selected, campsitename);
+    //if (selectedIndex === -1) {
+    if (selected.length <= 0)
+      newSelected = newSelected.concat(selected, campsitename);
+    else newSelected = newSelected.slice(0, selectedIndex);
     // } else if (selectedIndex === 0) {
     //   newSelected = newSelected.concat(selected.slice(1));
     // } else if (selectedIndex === selected.length - 1) {
@@ -238,8 +253,11 @@ export default function CampgroundListComponent() {
     //     selected.slice(0, selectedIndex),
     //     selected.slice(selectedIndex + 1)
     //   );
-    // }
+    //}
 
+    getGoogleRating(googleRating);
+    getUserRating(userRating);
+    setOpen(!open);
     setSelected(newSelected);
   };
 
@@ -267,10 +285,15 @@ export default function CampgroundListComponent() {
   return (
     <Box sx={{ width: "100%" }}>
       <Paper sx={{ width: "100%", mb: 2 }}>
+        {/* <SearchBar
+          value={searched}
+          onChange={(searchVal) => requestSearch(searchVal)}
+          onCancelSearch={() => cancelSearch()}
+        /> */}
         <EnhancedTableToolbar numSelected={selected.length} />
         <TableContainer>
           <Table
-            sx={{ minWidth: 750 }}
+            sx={{ minWidth: 350 }}
             aria-labelledby="tableTitle"
             size={dense ? "small" : "medium"}
           >
@@ -278,42 +301,160 @@ export default function CampgroundListComponent() {
               numSelected={selected.length}
               order={order}
               orderBy={orderBy}
-              onSelectAllClick={handleSelectAllClick}
               onRequestSort={handleRequestSort}
               rowCount={state.campgrounds.length}
             />
+
             <TableBody>
-              {/* if you don't need to support IE11, you can replace the `stableSort` call with:
-                 rows.slice().sort(getComparator(order, orderBy)) */}
               {stableSort(state.campgrounds, getComparator(order, orderBy))
                 .slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage)
                 .map((row, index) => {
                   const isItemSelected = isSelected(row.campsitename);
                   const labelId = `enhanced-table-checkbox-${index}`;
-
                   return (
-                    <TableRow
-                      hover
-                      onClick={(event) => handleClick(event, row.campsitename)}
-                      aria-checked={isItemSelected}
-                      tabIndex={-1}
-                      key={row.campsitename}
-                      selected={isItemSelected}
-                    >
-                      <TableCell></TableCell>
-                      <TableCell
-                        component="th"
-                        id={labelId}
-                        scope="row"
-                        padding="none"
+                    <React.Fragment>
+                      <TableRow
+                        hover
+                        onClick={(event) =>
+                          handleClick(
+                            event,
+                            row.campsitename,
+                            row.googlerating,
+                            row.userrating
+                          )
+                        }
+                        aria-checked={isItemSelected}
+                        tabIndex={-1}
+                        key={row.campsitename}
+                        selected={isItemSelected}
                       >
-                        {row.campsitename}
-                      </TableCell>
-                      <TableCell align="right">{row.city}</TableCell>
-                      <TableCell align="right">{row.province}</TableCell>
-                      <TableCell align="right">{row.unservicedfee}</TableCell>
-                      <TableCell align="right">{row.servicedfee}</TableCell>
-                    </TableRow>
+                        <TableCell>
+                          <IconButton
+                            aria-label="expand row"
+                            size="small"
+                            onClick={() => setOpen(!open)}
+                          >
+                            {isItemSelected ? (
+                              <KeyboardArrowUpIcon />
+                            ) : (
+                              <KeyboardArrowDownIcon />
+                            )}
+                          </IconButton>
+                        </TableCell>
+                        <TableCell
+                          component="th"
+                          id={labelId}
+                          scope="row"
+                          padding="none"
+                        >
+                          {row.campsitename}
+                        </TableCell>
+                        <TableCell align="left">{row.city}</TableCell>
+                        <TableCell align="left">{row.province}</TableCell>
+                      </TableRow>
+
+                      <TableRow>
+                        <TableCell
+                          style={{ paddingBottom: 0, paddingTop: 0 }}
+                          colSpan={6}
+                        >
+                          {isItemSelected && open && (
+                            <Collapse in={open} timeout="auto" unmountOnExit>
+                              <Box sx={{ margin: 1 }}>
+                                <CampMap
+                                  lat={row.latitude}
+                                  lng={row.longitude}
+                                ></CampMap>
+                                <Table size="small" aria-label="campsiteinfo">
+                                  <TableHead>
+                                    <TableRow>
+                                      <TableCell width="40%">
+                                        <div>
+                                          <b>Equipment Rentals</b>
+                                        </div>
+                                      </TableCell>
+                                      <TableCell width="60%">
+                                        {row.equipmentrentals}
+                                      </TableCell>
+                                    </TableRow>
+                                    <TableRow>
+                                      <TableCell width="40%">
+                                        <div>
+                                          <b>Firewood</b>
+                                        </div>
+                                      </TableCell>
+                                      <TableCell width="60%">
+                                        {row.firewood}
+                                      </TableCell>
+                                    </TableRow>
+                                    <TableRow>
+                                      <TableCell width="40%">
+                                        <div>
+                                          <b>Dump Station</b>
+                                        </div>
+                                      </TableCell>
+                                      <TableCell width="60%">
+                                        {row.dumpstation}
+                                      </TableCell>
+                                    </TableRow>
+                                    <TableRow>
+                                      <TableCell width="40%">
+                                        <div>
+                                          <b>Additional Vehicle</b>
+                                        </div>
+                                      </TableCell>
+                                      <TableCell width="60%">
+                                        {row.additionalvehicle}
+                                      </TableCell>
+                                    </TableRow>
+                                    <TableRow>
+                                      <TableCell width="40%">
+                                        <div>
+                                          <b>Unserviced Fee</b>
+                                        </div>
+                                      </TableCell>
+                                      <TableCell width="60%">
+                                        {row.unservicedfee}
+                                      </TableCell>
+                                    </TableRow>
+                                    <TableRow>
+                                      <TableCell width="40%">
+                                        <div>
+                                          <b>Serviced Fee</b>
+                                        </div>
+                                      </TableCell>
+                                      <TableCell width="20%">
+                                        {row.servicedfee}
+                                      </TableCell>
+                                    </TableRow>
+                                    <TableRow>
+                                      <TableCell width="50%">
+                                        <div>
+                                          <b>User Rating</b>
+                                        </div>
+                                      </TableCell>
+                                      <TableCell width="50%">
+                                        <ReactStars {...userRatings} />
+                                      </TableCell>
+                                    </TableRow>
+                                    <TableRow>
+                                      <TableCell width="50%">
+                                        <div>
+                                          <b>Google Rating</b>
+                                        </div>
+                                      </TableCell>
+                                      <TableCell width="50%">
+                                        <ReactStars {...googleRatings} />
+                                      </TableCell>
+                                    </TableRow>
+                                  </TableHead>
+                                </Table>
+                              </Box>
+                            </Collapse>
+                          )}
+                        </TableCell>
+                      </TableRow>
+                    </React.Fragment>
                   );
                 })}
               {emptyRows > 0 && (
