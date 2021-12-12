@@ -26,7 +26,7 @@ function Login() {
         return;
         }
         if (user) {
-            history.replace("/home");
+            history.replace("/dashboard");
         }
     }, [user, loading]);
 

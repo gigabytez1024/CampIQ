@@ -1,4 +1,5 @@
 import React from "react";
+import { Link } from "react-router-dom";
 import { MuiThemeProvider } from "@material-ui/core/styles";
 import {
   Card,
@@ -7,6 +8,7 @@ import {
   Grid,
   Container,
   Box,
+  Button
 } from "@material-ui/core";
 import theme from "assets/theme/theme.js";
 import { makeStyles } from "@material-ui/core/styles";
@@ -24,13 +26,14 @@ const Home = () => {
   return (
     <MuiThemeProvider theme={theme}>
       <Card>
-        <p style={{ textAlign: "center" }}>
-          {/* <img src="globe.png" style={{ width: 300, marginBottom: 0 }} /> */}
-        </p>
-        <CardHeader
-          title="CampIQ"
-          style={{ color: theme.palette.secondary.main, textAlign: "center" }}
-        />
+        <div style={{ textAlign: "center", paddingTop: "2vh" }}>
+          <Button style={{ backgroundColor: "#667461", fontWeight: 100 }}
+            variant="contained" 
+            component={Link} to="/findcampground"
+          >
+            FIND A CAMPGROUND
+          </Button>
+        </div>
         <Container
           maxWidth={false}
           component={Box}

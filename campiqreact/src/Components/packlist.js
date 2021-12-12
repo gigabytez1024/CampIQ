@@ -14,8 +14,6 @@ import 'react-toastify/dist/ReactToastify.css';
 
 const PackListComponent = () => {
 
-
-
   function notify() {
     toast("🏕️ New packing list saved!", {
       position: toast.POSITION.BOTTOM_CENTER,
@@ -26,10 +24,8 @@ const PackListComponent = () => {
     })
   }
  
-  
   const [item, setItem] = useState("");
   const [newItem, setNewItem] = useState([]);
-
 
   const firstEvent = (event) => {
     setItem(event.target.value);
@@ -51,8 +47,8 @@ const PackListComponent = () => {
     notify();
     const userId = auth.currentUser.uid;
     
-db.collection( `users`).doc(`${userId}`).set({packlist: newItem}, {merge: false})
-setNewItem([]);
+    db.collection( `users`).doc(`${userId}`).set({packlist: newItem}, {merge: false})
+    setNewItem([]);
   }
 
   return (

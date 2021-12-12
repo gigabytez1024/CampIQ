@@ -89,11 +89,15 @@ const Location = (props) => {
                             />
                         )}
                     />
-                    <Button varient="contained" color="secondary" style={{ marginTop: 20, alignContent: "center" }}
+                </div>
+                <div style={{ textAlign: "center", paddingBottom: "2vh"}}>
+                    <Button
+                        variant="contained" 
+                        color="secondary" 
                         disabled={notChosen}
-                        fontSize="large"
                         onClick={chooseCampsite}
-                    >Add Review
+                    >
+                        Add Review
                     </Button>
                 </div>
             </Card>

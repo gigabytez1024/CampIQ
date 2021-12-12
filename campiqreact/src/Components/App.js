@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { Route, Link, Redirect } from "react-router-dom";
+import { Route, Link, Redirect, useHistory } from "react-router-dom";
 import Reorder from "@material-ui/icons/Reorder";
 import { MuiThemeProvider } from "@material-ui/core/styles";
 import {
@@ -12,6 +12,8 @@ import {
 } from "@material-ui/core";
 import theme from "assets/theme/theme.js";
 import logo from "./campIQLogo.jpg";
+import { auth } from "../firebase";
+import { useAuthState } from "react-firebase-hooks/auth";
 // Components
 import Home from "./home";
 import AccountBenefits from "./accountbenefits";
@@ -26,6 +28,7 @@ import Login from "./login";
 import Booking from "./booking";
 import ResetPassword from "./resetpassword";
 import TripSummaryComponent from "./tripsummary";
+import Dashboard from "./dashboard";
 // plugins styles from node_modules
 import "react-perfect-scrollbar/dist/css/styles.css";
 import "@fullcalendar/common/main.min.css";
@@ -40,7 +43,8 @@ import "assets/scss/argon-dashboard-pro-material-ui.scss?v1.0.0";
 const App = () => {
 
   const [item, setItem] = useState({ msg: null, anchorEl: null });
-
+  const [user] = useAuthState(auth);
+  const history = useHistory();
   const [anchorEl, setAnchorEl] = useState(null);
 
   const handleClose = () => {
@@ -50,6 +54,16 @@ const App = () => {
   const handleClick = (event) => {
     setAnchorEl(event.currentTarget);
   };
+
+  // If logged in redirect to dashboard, if not logged in redirect to login page
+  const handleUsers = () => {
+    setAnchorEl(null);
+    if (user)
+      history.replace("/dashboard");
+    else
+      history.replace("/login");
+  }
+
   // Logout and redirect user to home page
   const handleLogout = () => {
     setAnchorEl(null);
@@ -84,24 +98,14 @@ const App = () => {
             <MenuItem component={Link} to="/login" onClick={handleClose}>
               Login
             </MenuItem>
-            <MenuItem component={Link} to="/accountbenefits" onClick={handleClose}>
-              Account Benefits
-            </MenuItem>
-            <MenuItem component={Link} to="/tripplanner" onClick={handleClose}>
-              Trip Planner
-            </MenuItem>
-            <MenuItem component={Link} to="/addreview" onClick={handleClose}>
-              Add a Review
-            </MenuItem>
-                 <MenuItem component={Link} to="/tripSummaryComponent" onClick={handleClose}>
-              Trip Summary test link (to be removed)
-            </MenuItem>
-            <MenuItem
-              component={Link} to="/findcampground" onClick={handleClose}>
+            <MenuItem component={Link} to="/findcampground" onClick={handleClose}>
               Find Campground
             </MenuItem>
-            <MenuItem component={Link} to="/memories" onClick={handleClose}>
-              Memories
+            <MenuItem onClick={handleUsers}>
+              Account Dashboard
+            </MenuItem>
+            <MenuItem component={Link} to="/accountbenefits" onClick={handleClose}>
+              Account Benefits
             </MenuItem>
             <MenuItem component={Link} to="/home" onClick={handleLogout}>
               Logout
@@ -110,23 +114,20 @@ const App = () => {
         </Toolbar>
       </AppBar>
       <div>
-        <Route exact path="/" render={() => <Redirect to="/home" />} />
-        <Route
-          exact
-          path="/accountbenefits"
-          render={() => <AccountBenefits />}
-        />
-        <Route path="/tripplanner" render={() => <TripPlannerComponent />} />
-        <Route exact path="/addreview" render={() => <AddReview />} />
-        <Route path="/packlist" render={() => <PackListComponent />} />
-        <Route path="/findcampground" render={() => <FindCampground />} />
-        <Route path="/memories" render={() => <Memories/>}/>
+        <Route path="/" render={() => <Redirect to="/home" />} />
         <Route path="/login" render={() => <Login/>}/>
-        <Route path="/createaccount" render={() => <CreateAccount/>}/>
-        <Route path="/resetpassword" render={() => <ResetPassword/>}/>
-        <Route path="/tripSummaryComponent" render={() => <TripSummaryComponent/>}/>
+        <Route path="/findcampground" render={() => <FindCampground />} />
+        <Route path="/accountbenefits" render={() => <AccountBenefits />} />
+        <Route path="/createaccount" render={() => <CreateAccount/>} />
+        <Route path="/dashboard" render={() => <Dashboard />} />
+        <Route path="/tripplanner" render={() => <TripPlannerComponent />} />
+        <Route path="/packlist" render={() => <PackListComponent />} />
+        <Route path="/booking" component={Booking} />
+        <Route path="/addreview" render={() => <AddReview />} />
+        <Route path="/memories" render={() => <Memories/>}/>
+        <Route path="/resetpassword" render={() => <ResetPassword/>} />
+        <Route path="/tripsummary" render={() => <TripSummaryComponent/>} />
         <Route path="/home" component={Home} />
-        <Route path="/booking" component={Booking}/>
       </div>
     </MuiThemeProvider>
   );

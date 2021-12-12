@@ -49,9 +49,8 @@ const selectFileInput = ({ accept, onFiles, files, getFilesFromEvent }) => {
 }
 
 return (
- 
- 
-    <><Card style={{ marginTop: "10%" }}>
+
+  <><Card style={{ marginTop: "10%" }}>
     <CardHeader title="Upload your memories" style={{ textAlign: "center", fontFamily: "Spicy Rice", color:"primary"}} />
 
     <Dropzone
@@ -68,13 +67,25 @@ return (
         dropzoneActive: { borderColor: 'secondary' },
       }} />
   </Card><p></p><Card>
-      <Button variant="contained" color="secondary" align="left" component={Link} to="/addreview">
-        Review a Camprgound
+    <div style={{ textAlign: "center", paddingTop: "2vh" }}>
+      <Button 
+          variant="contained" 
+          color="secondary"
+          component={Link} to="/addreview"                        
+      >
+        Review a Campground
       </Button>
-      <Button variant="contained" color="secondary" align="left" style={{ marginLeft: "25%" }} component={Link} to="/home">
-        Home
+    </div>
+    <div style={{ textAlign: "center", paddingTop: "2vh" }}>
+      <Button 
+          variant="contained" 
+          color="secondary"
+          component={Link} to="/dashboard"                        
+      >
+        Back to Dashboard
       </Button>
-    </Card></>
+    </div>
+  </Card></>
 )
 };
 

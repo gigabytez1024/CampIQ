@@ -7,7 +7,7 @@ import { Link } from "react-router-dom";
 const TripPlannerComponent = () => {
   return (
     <MuiThemeProvider theme={theme}>
-      <Card style={{ marginTop: "20%" }}>
+      <Card>
         <CardHeader title="Plan Your Upcoming Trip" style={{ textAlign: "center" }} />
         <CardContent>
           <p></p>

@@ -102,6 +102,7 @@ const AddReview = () => {
                 notify();
             }
         } catch (error) {
+            notify();
             console.log(error);
         }
     }
@@ -144,27 +145,33 @@ const AddReview = () => {
                                 />
                             </div>
 
-                            <div style={{ textAlign: "center", marginTop: 0 }}>
+                            <div style={{ textAlign: "center", marginTop: 0, paddingTop: "2vh" }}>
                                 <Button style={{ alignContent: "center" }}
+                                    variant="contained"
+                                    color="secondary"
                                     onClick={submitReview}
-                                    fontSize="large"
                                 >
                                     Submit
                                 </Button>
-                                <Button component={Link} to="/home">
-                                    Home
-                                </Button>
-                                <ToastContainer position="bottom-center"
-                                    autoClose={5000}
-                                    hideProgressBar={false}
-                                    newestOnTop={false}
-                                    closeOnClick
-                                    rtl={false}
-                                    pauseOnFocusLoss
-                                    draggable
-                                    pauseOnHover
-                                />
                             </div>
+                            <div style={{ textAlign: "center", marginTop: 0, paddingTop: "2vh" }}>
+                                <Button component={Link} to="/dashboard"
+                                    variant="contained"
+                                    color="secondary"
+                                >
+                                    Back to Dashboard
+                                </Button>
+                            </div>
+                            <ToastContainer position="bottom-center"
+                                autoClose={5000}
+                                hideProgressBar={false}
+                                newestOnTop={false}
+                                closeOnClick
+                                rtl={false}
+                                pauseOnFocusLoss
+                                draggable
+                                pauseOnHover
+                            />
                         </div>
                     </Card>
                 )
