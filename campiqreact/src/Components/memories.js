@@ -2,7 +2,7 @@ import React from 'react';
 import 'react-dropzone-uploader/dist/styles.css'
 import Dropzone from 'react-dropzone-uploader'
 import { getDroppedOrSelectedFiles } from 'html5-file-selector';
-import { Button, Card, CardHeader, Typography} from '@material-ui/core';
+import { Button, Card, CardHeader} from '@material-ui/core';
 import { Link } from "react-router-dom";
 import "./style.css";
 
@@ -49,9 +49,8 @@ const selectFileInput = ({ accept, onFiles, files, getFilesFromEvent }) => {
 }
 
 return (
- 
- 
-    <><Card style={{ marginTop: "10%" }}>
+
+  <><Card style={{ marginTop: "10%" }}>
     <CardHeader title="Upload your memories" style={{ textAlign: "center", fontFamily: "Spicy Rice", color:"primary"}} />
 
     <Dropzone
@@ -68,13 +67,25 @@ return (
         dropzoneActive: { borderColor: 'secondary' },
       }} />
   </Card><p></p><Card>
-      <Button variant="contained" color="secondary" align="left" component={Link} to="/addreview">
-        Review a Camprgound
+    <div style={{ textAlign: "center", paddingTop: "2vh" }}>
+      <Button 
+          variant="contained" 
+          color="secondary"
+          component={Link} to="/addreview"                        
+      >
+        Review a Campground
       </Button>
-      <Button variant="contained" color="secondary" align="left" style={{ marginLeft: "25%" }} component={Link} to="/home">
-        Home
+    </div>
+    <div style={{ textAlign: "center", paddingTop: "2vh" }}>
+      <Button 
+          variant="contained" 
+          color="secondary"
+          component={Link} to="/dashboard"                        
+      >
+        Back to Dashboard
       </Button>
-    </Card></>
+    </div>
+  </Card></>
 )
 };
 

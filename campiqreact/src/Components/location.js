@@ -11,14 +11,45 @@ import theme from '../theme';
 
 const Location = (props) => {
     const initialState = {
-        campsites: ["testcampsite1", "testcampsite2"],
-        campsite: "",
+        campgroundNames: [],
+        chosenCampground: "",
     };
+    const GRAPHURL = "http://localhost:5000/graphql";
     const reducer = (state, newState) => ({ ...state, ...newState });
     const [state, setState] = useReducer(reducer, initialState);
     useEffect(() => {
-        //fetchCountries();
+        fetchCampgrouds();
     }, []);
+
+    const fetchCampgrouds = async () => {
+        try {
+            let response = await fetch(GRAPHURL, {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json",
+                    Accept: "application/json",
+                },
+                body: JSON.stringify({
+                    query: 'query{campgrounds{campsitename}}',
+                }),
+            });
+            let json = await response.json();
+            let uniqueNames = [
+                ...new Set(json.data.campgrounds.map((a) => a.campsitename)),
+            ];
+            uniqueNames.sort((first, second) =>
+                first.localeCompare(second)
+            );
+            setState({
+                campgroundNames: uniqueNames
+            });
+        } catch (error) {
+            console.log(error);
+            setState({
+                msg: `Problem loading server data - ${error.message}`,
+            });
+        }
+    };
 
     const onChange = (e, selectedOption) => {
         selectedOption
@@ -45,7 +76,7 @@ const Location = (props) => {
                 <CardHeader title="Location" style={{ textAlign: "center" }} />
                 <div style={{ margin: 20 }}>
                     <Autocomplete
-                        options={state.campsites}
+                        options={state.campgroundNames}
                         getOptionLabel={(option) => option}
                         style={{ width: '100%' }}
                         onChange={onChange}
@@ -53,16 +84,20 @@ const Location = (props) => {
                             <TextField
                                 {...params}
                                 label="pick a campsite"
-                                variant="outlined"
+                                variant="filled"
                                 fullWidth
                             />
                         )}
                     />
-                    <Button varient="contained" color="secondary" style={{ marginTop: 20, alignContent: "center" }}
+                </div>
+                <div style={{ textAlign: "center", paddingBottom: "2vh"}}>
+                    <Button
+                        variant="contained" 
+                        color="secondary" 
                         disabled={notChosen}
-                        fontSize="large"
                         onClick={chooseCampsite}
-                    >Add Review
+                    >
+                        Add Review
                     </Button>
                 </div>
             </Card>
