@@ -7,6 +7,7 @@ import {
   Grid,
   Container,
   Box,
+  CardContent,
 } from "@material-ui/core";
 import theme from "assets/theme/theme.js";
 import { makeStyles } from "@material-ui/core/styles";
