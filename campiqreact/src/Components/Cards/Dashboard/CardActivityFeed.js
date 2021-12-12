@@ -92,7 +92,7 @@ export default function CardActivityFeed() {
                     fontWeight="600"
                     color={theme.palette.gray[900]}
                   >
-                    John Snow
+                    John Doe
                   </Box>
                   <Box
                     component="small"
@@ -241,7 +241,7 @@ export default function CardActivityFeed() {
                   padding="1rem 1.25rem 1rem 2.5rem"
                 >
                   <Typography variant="h5" component="h6">
-                    Michael Lewis
+                    Carl Weathers
                   </Typography>
                   <Box
                     component="p"
@@ -309,7 +309,7 @@ export default function CardActivityFeed() {
                   padding="1rem 1.25rem 1rem 2.5rem"
                 >
                   <Typography variant="h5" component="h6">
-                    Jessica Stones
+                    Jessica Jones
                   </Typography>
                   <Box
                     component="p"

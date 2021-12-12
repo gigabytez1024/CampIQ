@@ -21,32 +21,32 @@ const useStyles = makeStyles(componentStyles);
 const items = [
   {
     image: require("assets/img/theme/team-1-800x800.jpg").default,
-    name: "John Snow",
-    description: "Let's meet at Starbucks at 11:30. Wdyt?",
+    name: "Bobby Digital",
+    description: "Hello?",
     time: "2 hrs ago",
   },
   {
     image: require("assets/img/theme/team-2-800x800.jpg").default,
-    name: "John Snow",
-    description: "A new issue has been reported for Argon.",
+    name: "Bobby Digital",
+    description: "Here is a message.",
     time: "3 hrs ago",
   },
   {
     image: require("assets/img/theme/team-3-800x800.jpg").default,
-    name: "John Snow",
+    name: "Bobby Digital",
     description: "Your posts have been liked a lot.",
     time: "4 hrs ago",
   },
   {
     image: require("assets/img/theme/team-4-800x800.jpg").default,
-    name: "John Snow",
-    description: "Let's meet at Starbucks at 11:30. Wdyt?",
+    name: "Bobby Digital",
+    description: "Let's meet at 11:30. Wdyt?",
     time: "5 hrs ago",
   },
   {
     image: require("assets/img/theme/team-1-800x800.jpg").default,
-    name: "John Snow",
-    description: "A new issue has been reported for Argon.",
+    name: "Bobby Digital",
+    description: "Check out this new thing.",
     time: "6 hrs ago",
   },
 ];
