@@ -21,6 +21,15 @@ const Home = () => {
   return (
     <MuiThemeProvider theme={theme}>
       <Card>
+        <CardHeader
+          className={classes.cardHeader}
+          title="Trending Campsites"
+          titleTypographyProps={{
+            component: Box,
+            marginBottom: "0!important",
+            variant: "h1",
+          }}
+        ></CardHeader>
         <p style={{ textAlign: "center" }}>
           {/* <img src="globe.png" style={{ width: 300, marginBottom: 0 }} /> */}
         </p>
