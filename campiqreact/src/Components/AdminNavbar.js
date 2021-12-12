@@ -83,16 +83,6 @@ export default function AdminNavbar({ openSidebarResponsive }) {
                   [classes.displayNone]: showSearch,
                 })}
               >
-                <Hidden xlUp implementation="css">
-                  <IconButton onClick={openSidebarResponsive}>
-                    <Box
-                      component={MenuIcon}
-                      color={theme.palette.white.main}
-                      width="1.5rem!important"
-                      height="1.5rem!important"
-                    />
-                  </IconButton>
-                </Hidden>
                 <Hidden smUp implementation="css">
                   <IconButton onClick={() => setShowSearch(true)}>
                     <Box
