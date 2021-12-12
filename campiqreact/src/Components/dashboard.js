@@ -33,6 +33,7 @@ const Dashboard = () => {
           title="Account Dashboard"
           titleTypographyProps={{
             component: Box,
+            textAlign: "center",
             marginBottom: "0!important",
             variant: "h1",
           }}

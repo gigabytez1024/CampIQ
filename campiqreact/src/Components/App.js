@@ -39,6 +39,7 @@ import "@fortawesome/fontawesome-free/css/all.min.css";
 import "assets/plugins/nucleo/css/nucleo.css";
 // core styles
 import "assets/scss/argon-dashboard-pro-material-ui.scss?v1.0.0";
+import { StylesContext } from "@material-ui/styles";
 
 const App = () => {
 
@@ -73,9 +74,9 @@ const App = () => {
   return (
     <MuiThemeProvider theme={theme}>
       <AppBar position="static">
-        <Toolbar >
+        <Toolbar style={{ paddingTop: "1vh" }}>
           <Typography variant="h6" color="inherit">
-            <div className="center-image">
+            <div>
               <img src={logo} />
             </div>
           </Typography>
@@ -84,7 +85,7 @@ const App = () => {
             color="inherit"
             style={{ marginLeft: "auto", paddingRight: "1vh" }}
           >
-            <Reorder />
+            <Reorder style={{ transform: "scale(2)" }} />
           </IconButton>
           <Menu
             id="simple-menu"

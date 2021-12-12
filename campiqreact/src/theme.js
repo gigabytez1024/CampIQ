@@ -8,13 +8,13 @@ export default createTheme({
     background: { paper: "#fff", default: "#fafafa" },
     primary: {
       light: "#7986cb",
-      main: "rgba(90, 81, 73, 1)",
+      main: "#0e5e72",
       dark: "#303f9f",
       contrastText: "#fff",
     },
     secondary: {
       light: "#0e5e72",
-      main: "rgba(102, 116, 97, 1)",
+      main: "#d3634b",
       dark: "#c51162",
       contrastText: "#fff",
     },
