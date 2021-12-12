@@ -23,7 +23,7 @@ const Home = () => {
       <Card>
         <CardHeader
           className={classes.cardHeader}
-          title="Trending Campsites"
+          title="Discover Campsites"
           titleTypographyProps={{
             component: Box,
             marginBottom: "0!important",
