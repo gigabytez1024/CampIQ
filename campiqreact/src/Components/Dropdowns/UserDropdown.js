@@ -148,7 +148,7 @@ export default function UserDropdown() {
             root: classes.avatarRoot,
           }}
         />
-        <Hidden mdDown>John Snow</Hidden>
+        <Hidden mdDown>Profile</Hidden>
       </Button>
       {renderMenu}
     </>
