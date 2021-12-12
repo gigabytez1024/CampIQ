@@ -56,7 +56,7 @@ const themeColors = {
     dialogNotification: "#f56036",
   },
   info: {
-    main: "#11cdef",
+    main: "#052d37",
     snackbar: "#37d5f2",
     badgeBg: "#aaedf9",
     badgeBgHover: "#0c9cb7",

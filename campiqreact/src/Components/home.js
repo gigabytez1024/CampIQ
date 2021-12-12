@@ -10,11 +10,8 @@ import {
 } from "@material-ui/core";
 import theme from "assets/theme/theme.js";
 import { makeStyles } from "@material-ui/core/styles";
-import CardActivityFeed from "./Cards/Dashboard/CardActivityFeed";
-import CardLightTableSortable from "./Cards/Sortable/CardLightTableSortable";
-import AlternativeHeader from "./Headers/AlternativeHeader";
+import CardCampsite from "./Cards/CardCampsite";
 import AuthFooter from "./Footers/AuthFooter";
-import CardCalendar from "./Cards/Dashboard/CardCalendar";
 import componentStyles from "assets/theme/views/admin/dashboard.js";
 import componentStylesCardDeck from "assets/theme/components/cards/card-deck";
 const useStyles = makeStyles(componentStyles);
@@ -27,7 +24,6 @@ const Home = () => {
         <p style={{ textAlign: "center" }}>
           {/* <img src="globe.png" style={{ width: 300, marginBottom: 0 }} /> */}
         </p>
-        <AlternativeHeader />
         <Container
           maxWidth={false}
           component={Box}
@@ -35,22 +31,45 @@ const Home = () => {
           classes={{ root: classes.containerRoot }}
         >
           <Grid container>
-            <Grid item xs={12} xl={6}>
-              <CardActivityFeed />
+            <Grid item xs={12} xl={3}>
+              <CardCampsite
+                img={1}
+                name="Test"
+                date="Test"
+                link="#"
+                description="Test Description"
+              />
             </Grid>
-            <Grid item xs={12} xl={6}>
-              <CardLightTableSortable />
-              <CardCalendar />
+            <Grid item xs={12} xl={3}>
+              <CardCampsite
+                img={2}
+                name="Test"
+                date="Test"
+                link="#"
+                description="Test Description"
+              />
+            </Grid>
+            <Grid item xs={12} xl={3}>
+              <CardCampsite
+                img={3}
+                name="Test"
+                date="Test"
+                link="#"
+                description="Test Description"
+              />
+            </Grid>
+            <Grid item xs={12} xl={3}>
+              <CardCampsite
+                img={4}
+                name="Test"
+                date="Test"
+                link="#"
+                description="Test Description"
+              />
             </Grid>
           </Grid>
           <Grid container></Grid>
         </Container>
-        <Typography
-          color="secondary"
-          style={{ float: "right", paddingRight: "1vh", fontSize: "smaller" }}
-        >
-          &copy;5Starz
-        </Typography>
         <AuthFooter />
       </Card>
     </MuiThemeProvider>

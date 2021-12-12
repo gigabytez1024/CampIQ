@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useReducer, useEffect, useState } from "react";
 // javascript plugin that creates a sortable object from a dom object
 import List from "list.js";
 // @material-ui/core components
@@ -27,6 +27,13 @@ import MoreVert from "@material-ui/icons/MoreVert";
 import componentStyles from "assets/theme/components/cards/sortable/card-light-table-sortable.js";
 
 const useStyles = makeStyles(componentStyles);
+const GRAPHURL = "http://localhost:5000/graphql";
+const initialState = {
+  campgroundNames: [],
+  province: [],
+  city: [],
+  campgrounds: [],
+};
 
 const tableHead = ["Campsite", "Avg. Cost", "Top Users", "Rating", ""];
 const tableBody = [
@@ -182,6 +189,10 @@ const AvatarGroupComponent = () => {
 };
 
 export default function CardLightTableSortable() {
+  var queryCampgrounds = `query{campgrounds{campsitename,city,province, unservicedfee, servicedfee}}`;
+  const reducer = (state, newState) => ({ ...state, ...newState });
+  const [state, setState] = useReducer(reducer, initialState);
+
   const classes = useStyles();
   const tableConatinerRef = React.useRef(null);
   React.useEffect(() => {
@@ -189,7 +200,35 @@ export default function CardLightTableSortable() {
       valueNames: ["name", "cost", "status", "rating"],
       listClass: "list",
     });
+    fetchCampgrouds();
   }, []);
+  const fetchCampgrouds = async () => {
+    try {
+      let response = await fetch(GRAPHURL, {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+          Accept: "application/json",
+        },
+        body: JSON.stringify({
+          query: queryCampgrounds,
+        }),
+      });
+      let json = await response.json();
+      let uniqueNames = [
+        ...new Set(json.data.campgrounds.map((a) => a.campsitename)),
+      ];
+      setState({
+        campgrounds: json.data.campgrounds,
+        campgroundNames: uniqueNames,
+      });
+    } catch (error) {
+      console.log(error);
+      setState({
+        msg: `Problem loading server data - ${error.message}`,
+      });
+    }
+  };
   return (
     <>
       <Card classes={{ root: classes.cardRoot }}>

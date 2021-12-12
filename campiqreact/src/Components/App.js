@@ -9,6 +9,7 @@ import PackListComponent from "./packlist";
 import AccountBenefits from "./accountbenefits";
 import CreateAccount from "./createaccount";
 import Login from "./login";
+import Dashboard from "./dashboard";
 import { MuiThemeProvider } from "@material-ui/core/styles";
 import {
   Toolbar,
@@ -93,6 +94,9 @@ const App = () => {
             <MenuItem component={Link} to="/memories" onClick={handleClose}>
               Memories
             </MenuItem>
+            <MenuItem component={Link} to="/dashboard" onClick={handleClose}>
+              Dashboard
+            </MenuItem>
           </Menu>
         </Toolbar>
       </AppBar>
@@ -107,7 +111,8 @@ const App = () => {
         <Route exact path="/addreview" render={() => <AddReview />} />
         <Route path="/packlist" render={() => <PackListComponent />} />
         <Route path="/findcampground" render={() => <FindCampground />} />
-        <Route path="/memories" render={() => <Memories/>}/>
+        <Route path="/memories" render={() => <Memories />} />
+        <Route path="/dashboard" render={() => <Dashboard />} />
         <Route path="/home" component={Home} />
       </div>
     </MuiThemeProvider>

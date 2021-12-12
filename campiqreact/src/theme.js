@@ -6,9 +6,24 @@ export default createTheme({
   palette: {
     common: { black: "#000", white: "#fff" },
     background: { paper: "#fff", default: "#fafafa" },
-    primary: { light: "#7986cb", main: "rgba(90, 81, 73, 1)", dark: "#303f9f", contrastText: "#fff" },
-    secondary: { light: "#ff4081", main: "rgba(102, 116, 97, 1)", dark: "#c51162", contrastText: "#fff" },
-    error: { light: "#e57373", main: "#f44336", dark: "#d32f2f", contrastText: "#fff" },
+    primary: {
+      light: "#7986cb",
+      main: "rgba(90, 81, 73, 1)",
+      dark: "#303f9f",
+      contrastText: "#fff",
+    },
+    secondary: {
+      light: "#0e5e72",
+      main: "rgba(102, 116, 97, 1)",
+      dark: "#c51162",
+      contrastText: "#fff",
+    },
+    error: {
+      light: "#e57373",
+      main: "#f44336",
+      dark: "#d32f2f",
+      contrastText: "#fff",
+    },
     text: {
       primary: "rgba(0, 0, 0, 0.87)",
       secondary: "rgba(0, 0, 0, 0.54)",
