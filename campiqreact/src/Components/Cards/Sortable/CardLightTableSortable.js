@@ -234,7 +234,7 @@ export default function CardLightTableSortable() {
       <Card classes={{ root: classes.cardRoot }}>
         <CardHeader
           className={classes.cardHeader}
-          title="Trending Campsites"
+          title="Favourite Campsites"
           titleTypographyProps={{
             component: Box,
             marginBottom: "0!important",
