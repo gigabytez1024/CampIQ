@@ -10,13 +10,24 @@ const TripPlannerComponent = () => {
       <Card>
         <CardHeader title="Plan Your Upcoming Trip" style={{ textAlign: "center" }} />
         <CardContent>
-          <p></p>
-          <Button variant="contained" color="secondary" align="left" component={Link} to="/packlist">
-            What to Bring
-          </Button>
-          <Button variant="contained" color="secondary" component={Link} to="/booking" style={{ marginLeft: "25%" }}>
-            Book A Site
-          </Button>
+          <div style={{ textAlign: "center"}}>
+              <Button component={Link} to="/packlist"
+                  variant="contained"
+                  color="secondary"
+                  fullWidth
+              >
+                  What to Bring
+              </Button>
+          </div>
+          <div style={{ textAlign: "center", paddingTop: "2vh" }}>
+              <Button component={Link} to="/booking"
+                  variant="contained"
+                  color="secondary"
+                  fullWidth
+              >
+                  Book A Site
+              </Button>
+          </div>
         </CardContent>
       </Card>
     </MuiThemeProvider>

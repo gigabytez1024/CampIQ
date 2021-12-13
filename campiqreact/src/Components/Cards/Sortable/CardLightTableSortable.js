@@ -1,4 +1,4 @@
-import React, { useReducer, useEffect, useState } from "react";
+import React, { useReducer } from "react";
 // javascript plugin that creates a sortable object from a dom object
 import List from "list.js";
 // @material-ui/core components

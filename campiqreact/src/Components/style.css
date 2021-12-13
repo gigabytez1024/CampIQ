@@ -1,6 +1,6 @@
 .childOne {
   width: 75%;
-  height: 65vh;
+  height: 60vh;
   background-color: #f4f4f4;
   box-shadow: 5px 5px 25px -5px rgba(0, 0, 0, 0.5);
   border-radius: 15px;
@@ -24,7 +24,7 @@ input {
 .AddBtn {
   width: 40px;
   height: 45px;
-  background-color: #093323 !important;
+  background-color: #0e5e72 !important;
   color: white !important;
   box-shadow: 5px 5px 15px -5px rgba(0, 0, 0, 0.3);
   border-radius: 50% !important;
@@ -39,10 +39,11 @@ input {
 .childTwo {
   width: 35%;
   height: 7vh;
-  background-color: #f4f4f4;
-  box-shadow: 5px 5px 25px -5px rgba(0, 0, 0, 0.5);
+  background-color: #d3634b;
+  box-shadow: 2px 2px 2px 2px rgba(0, 0, 0, 0.5);
   border-radius: 15px;
   margin: auto;
+  margin-bottom: 2vh;
 }
 
 .delBtn {

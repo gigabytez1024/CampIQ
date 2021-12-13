@@ -95,7 +95,7 @@ const AddReview = () => {
             });
             let json = await response.json();
             console.log(json);
-            if (json.data.updateRating.campsitename != "") {
+            if (json.data.updateRating.campsitename !== "") {
                 setReviewSet(true);
                 setCampsite("");
                 setCampsiteChosen(false);

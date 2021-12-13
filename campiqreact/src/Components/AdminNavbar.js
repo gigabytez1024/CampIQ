@@ -3,7 +3,6 @@ import clsx from "clsx";
 import PropTypes from "prop-types";
 // @material-ui/core components
 import { makeStyles } from "@material-ui/core/styles";
-import { useTheme } from "@material-ui/core/styles";
 import AppBar from "@material-ui/core/AppBar";
 import Box from "@material-ui/core/Box";
 import Container from "@material-ui/core/Container";
@@ -13,7 +12,6 @@ import InputBase from "@material-ui/core/InputBase";
 import Toolbar from "@material-ui/core/Toolbar";
 // @material-ui/icons components
 import Clear from "@material-ui/icons/Clear";
-import MenuIcon from "@material-ui/icons/Menu";
 import SearchIcon from "@material-ui/icons/Search";
 import ZoomIn from "@material-ui/icons/ZoomIn";
 

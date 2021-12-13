@@ -1,7 +1,6 @@
-import React , {useEffect} from "react";
-import {useState} from 'react';
-//import {db} from "../firebasedb";
-import {auth, db} from "../firebase"
+import React from "react";
+import { useState } from 'react';
+import { db } from "../firebase"
 
 const TripSummaryComponent = () => {
 

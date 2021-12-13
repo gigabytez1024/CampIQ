@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useReducer } from "react";
 import { Link, useHistory } from "react-router-dom";
 import { MuiThemeProvider } from "@material-ui/core/styles";
 import {
@@ -15,10 +15,20 @@ import { useAuthState } from "react-firebase-hooks/auth";
 
 function Login() {
 
-    const [email, setEmail] = useState("");
-    const [password, setPassword] = useState("");
+    const initialState = {
+        email: "",
+        password: ""
+    };
+
     const [user, loading] = useAuthState(auth);
     const history = useHistory();
+
+    const reducer = (state, newState) => ({ ...state, ...newState });
+    const [state, setState] = useReducer(reducer, initialState);
+
+    const handleChange = (prop) => (event) => {
+        setState({ ...state, [prop]: event.target.value });
+    }
 
     useEffect(() => {
         if (loading) {
@@ -28,15 +38,15 @@ function Login() {
         if (user) {
             history.replace("/dashboard");
         }
-    }, [user, loading]);
+    }, [user, loading, history]);
 
     // Disable LOGIN button until all input fields are populated
     const emptyorundefined =
-        email === undefined ||
-        email === "" ||
-        password === undefined ||
-        password === "";
-
+        state.email === undefined ||
+        state.email === "" ||
+        state.password === undefined ||
+        state.password === "";
+    
     return (
         <MuiThemeProvider theme={theme}>
         <Card>
@@ -47,27 +57,27 @@ function Login() {
                     variant="outlined"
                     size="small"
                     label="Email Address"
-                    value={email}
-                    onChange={(e) => setEmail(e.target.value)}
-                    error={email === ""}
-                    helperText={email === "" ? "Email Address is required" : ""}
+                    value={state.email}
+                    onChange={handleChange('email')}
+                    error={state.email === ""}
+                    helperText={state.email === "" ? "Email Address is required" : ""}
                 />
                 <br/><br/>
                 <TextField
                     variant="outlined"
                     size="small"
                     label="Password"
-                    value={password}
-                    onChange={(e) => setPassword(e.target.value)}
-                    error={password === ""}
-                    helperText={password === "" ? "Password is required" : ""}
+                    value={state.password}
+                    onChange={handleChange('password')}
+                    error={state.password === ""}
+                    helperText={state.password === "" ? "Password is required" : ""}
                 />
                 <div style={{ textAlign: "center", paddingTop: "2vh" }}>
                     <Button 
                         variant="contained" 
                         color="secondary"                         
                         disabled={emptyorundefined}
-                        onClick={() => signInWithEmailAndPassword(email, password)}
+                        onClick={() => signInWithEmailAndPassword(state.email, state.password)}
                     >
                             Login
                     </Button>

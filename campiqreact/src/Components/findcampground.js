@@ -1,6 +1,5 @@
 import React, { useReducer, useEffect, useState } from "react";
 import PropTypes from "prop-types";
-import { alpha } from "@mui/material/styles";
 import Box from "@mui/material/Box";
 import Table from "@mui/material/Table";
 import TableBody from "@mui/material/TableBody";
@@ -17,7 +16,6 @@ import IconButton from "@mui/material/IconButton";
 import FormControlLabel from "@mui/material/FormControlLabel";
 import Switch from "@mui/material/Switch";
 import { visuallyHidden } from "@mui/utils";
-import SearchBar from "material-ui-search-bar";
 import KeyboardArrowDownIcon from "@mui/icons-material/KeyboardArrowDown";
 import KeyboardArrowUpIcon from "@mui/icons-material/KeyboardArrowUp";
 import Collapse from "@mui/material/Collapse";

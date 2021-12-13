@@ -3,18 +3,14 @@ import { MuiThemeProvider } from "@material-ui/core/styles";
 import {
   Card,
   CardHeader,
-  Typography,
   Grid,
   Container,
-  Box,
-  CardContent,
-  Button,
+  Box
 } from "@material-ui/core";
 import theme from "assets/theme/theme.js";
 import { makeStyles } from "@material-ui/core/styles";
 import CardActivityFeed from "./Cards/Dashboard/CardActivityFeed";
 import CardLightTableSortable from "./Cards/Sortable/CardLightTableSortable";
-import { Link } from "react-router-dom";
 import AuthFooter from "./Footers/AuthFooter";
 import CardCalendar from "./Cards/Dashboard/CardCalendar";
 import componentStyles from "assets/theme/views/admin/dashboard.js";
