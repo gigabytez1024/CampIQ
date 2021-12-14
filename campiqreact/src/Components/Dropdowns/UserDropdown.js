@@ -1,4 +1,5 @@
-import React from "react";
+import React , { useEffect, useState } from "react";
+import { useHistory } from "react-router-dom";
 // @material-ui/core components
 import { makeStyles } from "@material-ui/core/styles";
 import Avatar from "@material-ui/core/Avatar";
@@ -18,14 +19,31 @@ import Settings from "@material-ui/icons/Settings";
 
 // core components
 import componentStyles from "assets/theme/components/dropdowns/user-dropdown.js";
+import { logout } from "../../firebase";
+import { auth, db } from "../../firebase";
+import { useAuthState } from "react-firebase-hooks/auth";
 
 const useStyles = makeStyles(componentStyles);
 
 export default function UserDropdown() {
   const classes = useStyles();
   const [anchorEl, setAnchorEl] = React.useState(null);
+  const history = useHistory();
+  const [user] = useAuthState(auth);
+  const [profile, setProfile] = useState("");
 
   const isMenuOpen = Boolean(anchorEl);
+
+  const getProfile = async () => {
+    const response = db.collection("users").doc(user.uid);
+    const doc = await response.get();
+    let info = doc.data();
+    setProfile(info);
+  };
+
+  useEffect(() => {
+    getProfile();
+  }, []);
 
   const handleProfileMenuOpen = (event) => {
     setAnchorEl(event.currentTarget);
@@ -33,6 +51,13 @@ export default function UserDropdown() {
 
   const handleMenuClose = () => {
     setAnchorEl(null);
+  };
+
+  // Logout and redirect user to home page
+  const handleLogout = () => {
+    setAnchorEl(null);
+    logout();
+    history.replace("/home");
   };
 
   const menuId = "dropdowns-user-dropdown-id";
@@ -51,7 +76,7 @@ export default function UserDropdown() {
         component="h6"
         classes={{ root: classes.menuTitle }}
       >
-        Welcome!
+        Welcome { profile.firstname }!
       </Typography>
       <Box
         display="flex!important"
@@ -114,7 +139,7 @@ export default function UserDropdown() {
         display="flex!important"
         alignItems="center!important"
         component={MenuItem}
-        onClick={handleMenuClose}
+        onClick={handleLogout}
       >
         <Box
           component={DirectionsRun}
@@ -144,6 +169,8 @@ export default function UserDropdown() {
         <Avatar
           alt="..."
           src={require("assets/img/theme/team-4-800x800.jpg").default}
+          width="1.25rem!important"
+          height="1.25rem!important"
           classes={{
             root: classes.avatarRoot,
           }}

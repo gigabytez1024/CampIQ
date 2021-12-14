@@ -31,7 +31,10 @@ const registerWithEmailAndPassword = async (firstname, lastname, email, password
     try {
         const res = await auth.createUserWithEmailAndPassword(email, password);
         const user = res.user;
-        await db.collection("users").add({
+        await db
+        .collection("users")
+        .doc(user.uid)
+        .set({
             uid: user.uid,
             firstname,
             lastname,

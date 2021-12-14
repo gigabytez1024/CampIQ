@@ -1,4 +1,4 @@
-import React, { Component } from "react";
+import React from "react";
 import RoomSharpIcon from "@mui/icons-material/RoomSharp";
 import GoogleMapReact from "google-map-react";
 

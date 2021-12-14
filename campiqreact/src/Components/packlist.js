@@ -1,14 +1,12 @@
 import React, { useState } from "react";
-import Button from "@material-ui/core/Button";
+import { MuiThemeProvider } from "@material-ui/core/styles";
+import { Button, Card, CardContent, CardHeader } from "@material-ui/core";
 import AddIcon from "@material-ui/icons/Add";
 import DeleteIcon from "@material-ui/icons/Delete";
 import UpdateIcon from "@material-ui/icons/Update";
 import "./style.css";
+import theme from "../theme";
 import {db, auth} from "../firebase"
-import userEvent from "@testing-library/user-event";
-import { firestore } from "firebase-admin";
-import { setGridRowCountActionCreator } from "@material-ui/data-grid";
-import { Link } from "react-router-dom";
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 
@@ -52,38 +50,50 @@ const PackListComponent = () => {
   }
 
   return (
-    <div>
-      <br />
-      <br />
-      <div className="childOne">
-        <input type="text" value={item} placeholder="Add an item" onChange={firstEvent} />
-        <Button className="AddBtn" onClick={addEvent}>
-          <AddIcon />
-        </Button>
-        <br />
-        <br />
-        <ul className="textFont">
-          {newItem.map((val) => {
-            return <li> {val} </li>;
-          })}
-        </ul>
-      </div>
-      <br />
-      <br />
-      <div className="childTwo">
-        <Button className="delBtn" onClick={deleteEvent}>
-          <DeleteIcon />
-          Delete All
-        </Button>
-      </div>
-      <div className="childTwo">
-        <Button className="saveBtn" onClick={saveEvent}>
-          <UpdateIcon />
-          Save
-        </Button>
-        <ToastContainer />
-      </div>
-    </div>
+    <MuiThemeProvider theme={theme}>
+      <Card>
+        <CardHeader title="Packing List" style={{ textAlign: "center", paddingBottom: 0 }} />
+        <CardContent>
+          <div className="childOne">
+            <input style={{ marginLeft: "4vw" }} type="text" value={item} placeholder="Add an item" onChange={firstEvent} />
+            <Button color="primary" className="AddBtn" onClick={addEvent}>
+              <AddIcon />
+            </Button>
+            <br />
+            <br />
+            <ul className="textFont">
+              {newItem.map((val) => {
+                return <li> {val} </li>;
+              })}
+            </ul>
+          </div>
+          <br />
+          <div style={{ textAlign: "center" }}>
+            <span style={{ paddingRight: "2vh" }}>
+              <Button
+                variant="contained"
+                color="secondary"
+                onClick={deleteEvent}
+              >  
+                <DeleteIcon />
+                Delete All
+              </Button>
+            </span>
+            <span>
+              <Button
+                variant="contained"
+                color="secondary"
+                onClick={saveEvent}
+              >
+                <UpdateIcon />
+                Save
+              </Button>
+            </span>
+            <ToastContainer />
+          </div>
+        </CardContent>
+    </Card>
+    </MuiThemeProvider>
   );
 };
 

@@ -73,10 +73,10 @@ const App = () => {
   return (
     <MuiThemeProvider theme={theme}>
       <AppBar position="static">
-        <Toolbar >
+        <Toolbar style={{ paddingTop: "1vh" }}>
           <Typography variant="h6" color="inherit">
-            <div className="center-image">
-              <img src={logo} />
+            <div>
+              <img src={logo} alt="logo"/>
             </div>
           </Typography>
           <IconButton
@@ -84,7 +84,7 @@ const App = () => {
             color="inherit"
             style={{ marginLeft: "auto", paddingRight: "1vh" }}
           >
-            <Reorder />
+            <Reorder style={{ transform: "scale(2)" }} />
           </IconButton>
           <Menu
             id="simple-menu"
